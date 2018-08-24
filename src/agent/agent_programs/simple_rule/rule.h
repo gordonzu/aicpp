@@ -4,7 +4,6 @@
 #define AICPP_RULE_H
 
 #include "agent/action.h"
-#include "agent/test_action.h"
 #include "agent/dynamic_object.h"
 #include "condition.h"
 
