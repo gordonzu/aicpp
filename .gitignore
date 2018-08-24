@@ -1,0 +1,11 @@
+
+
+build/
+cmake-build-debug/
+.git/
+.idea/
+*.swp
+*.o
+*.so
+*.user
+

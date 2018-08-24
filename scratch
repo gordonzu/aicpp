@@ -1,0 +1,287 @@
+#src/environment/environment.cpp
+    #src/environment/xyenv/xy_environment.cpp
+    #src/environment/xyenv/xy_environment_state.cpp
+    #src/agent/action.cpp
+    #src/agent/agent_programs/agent_program.cpp
+    #src/util/datastructure/xy_location.cpp
+    #src/util/algorithm/utils.cpp
+
+    ##################################################
+    # tests 
+    ##################################################
+    #test/percept_test.cpp
+	#test/base_object_test.cpp
+    #test/percept_sequence_test.cpp
+
+    #test/simple_rule_test.cpp
+    #test/simple_rule_testx.cpp
+    test/table_test.cpp
+    #test/xy_environment_test.cpp
+    #test/tabledriven_agent_program_test.cpp
+
+
+
+
+
+
+
+/*
+    DynamicPercept(KVObject* key1, KVObject* val1, KVObject* key2, KVObject* val2)
+    {
+        //std::cout << "Calling four-arg constructor... " << std::endl; 
+        ptrkey1 = new String(key1->get_string());
+        ptrkey2 = new String(key2->get_string());
+
+        ptrval1 = set_type(val1);
+        ptrval2 = set_type(val2);
+
+        set_attribute(key1, val1);
+        set_attribute(key2, val2);
+    }
+
+    DynamicPercept(const char* key1, const char* val1): ptrkey2{new String()}, 
+                                                        ptrval2{new String()}
+    {
+        ptrkey1 = new String(key1);
+        ptrval1 = new String(val1);
+        set_attribute(ptrkey1, ptrval1);
+    }
+
+    DynamicPercept(const char* key1, const char* val1, 
+                   const char* key2, const char* val2)
+    {
+        // need to fix this for possible string bool values
+        ptrkey1 = new String(key1);
+        ptrval1 = new String(val1);
+        ptrkey2 = new String(key2);
+        ptrval2 = new String(val2);
+ 
+        set_attribute(ptrkey1, ptrval1);
+        set_attribute(ptrkey2, ptrval2);
+    }
+
+    DynamicPercept& operator=(DynamicPercept& other)
+    {
+        std::cout << "Calling assignment operator... " << std::endl; 
+        if (this != &other) {
+            delete ptrkey1;
+            delete ptrval1;
+            delete ptrkey2;
+            delete ptrval2;
+
+            ptrkey1 = set_type(other.ptrkey1);
+            ptrval1 = set_type(other.ptrval1);
+            ptrkey2 = set_type(other.ptrkey2);
+            ptrval2 = set_type(other.ptrval2);
+        }
+
+        //std::cout << "my map size: " << get_map_size() << std::endl;
+        //std::cout << "other map size: " << other.get_map_size() << std::endl;
+
+        //get_map().clear();
+        //get_map().erase(get_map().begin(), other.get_map().end());
+        //std::cout << "map size... " << get_map_size() << std::endl;
+
+        for (auto it = other.get_map().begin(); it != other.get_map().end(); ++it) {
+            other.get_map().erase(it);
+        }
+
+        this->set_attribute(ptrkey1, ptrval1);
+        //std::cout << "my map size: " << get_map_size() << std::endl;
+        //std::cout << "other map size: " << other.get_map_size() << std::endl;
+
+        if (ptrkey2->get_string() != "no value")
+            this->set_attribute(ptrkey2, ptrval2);
+        
+        std::cout << '\n' << std::endl;
+            
+        return *this;    
+    }
+
+    bool map_equals(std::multimap<KVObject*, KVObject*>& m) 
+    {
+        std::cout << "Calling map_equals()... " << std::endl;
+        if (get_map_size() != m.size()) { 
+            std::cout << "my map size: " <<  get_map_size() << std::endl; 
+            std::cout << "other map size: " << m.size() << std::endl; 
+            std::cout << "\n" << std::endl;  
+            return false;
+        }
+
+        auto it1 = get_map().begin();
+        auto it2 = m.begin();
+        
+        while (it1 != get_map().end()) {
+            if (it1->first->get_string() != it2->first->get_string()) {
+                std::cout << it1->first->get_string() 
+                          << ": "
+                          << std::endl;
+                return false;
+            }
+            if (it1->second->get_string() != it2->second->get_string()) {
+                std::cout << it1->second->get_string() 
+                          << ": "
+                          << std::endl;
+
+                return false;
+            }
+            ++it1;
+            ++it2;
+        }    
+        return true;
+    }
+
+    DynamicPercept(DynamicPercept& other)
+    {
+        std::cout << "Calling copy constructor... " << std::endl; 
+        ptrkey1 = set_type(other.ptrkey1);
+        ptrval1 = set_type(other.ptrval1);
+        ptrkey2 = set_type(other.ptrkey2);
+        ptrval2 = set_type(other.ptrval2);
+
+        this->set_attribute(ptrkey1, ptrval1);
+
+        if (ptrkey2->get_string() != "no value")
+            this->set_attribute(ptrkey2, ptrval2);
+    }
+
+    bool operator==(DynamicPercept& other) 
+    {
+        std::cout << "Calling equality operator... " << std::endl;
+        std::cout << "my map size: " << get_map_size() << std::endl;
+        std::cout << "other map size: " << other.get_map_size() << std::endl;
+        std::cout << "\n" << std::endl;;
+        return (typeid(*this) == typeid(other)) && 
+            (
+                ptrkey1->get_string() == other.ptrkey1->get_string() &&
+                ptrval1->get_string() == other.ptrval1->get_string() &&
+                ptrkey2->get_string() == other.ptrkey2->get_string() &&
+                ptrval2->get_string() == other.ptrval2->get_string()
+            )                                                        && 
+            map_equals(other.get_map());
+    }
+
+    bool operator<(DynamicPercept& other) 
+    {
+        return get_map() > other.get_map() ? true : false;
+    }
+
+    KVObject* set_type(KVObject* val)
+    {
+        std::string type = typeid(*val).name();
+
+        if (type.find("String") != std::string::npos) {
+            return new String(val->get_string());
+        }
+         else if (type.find("Boolean") != std::string::npos) {
+            return new Boolean(val->get_string());
+        } else {
+            return new String();
+        }
+    }    
+
+    KVObject* key1() const 
+    {
+        return ptrkey1;
+    }
+
+    KVObject* val1() const
+    {
+        return ptrval1;
+    }
+    
+};
+
+    KVObject* set_type(KVObject* val)
+    {
+        std::string type = typeid(*val).name();
+
+        if (type.find("String") != std::string::npos) {
+            return new String(val->get_string());
+        }
+         else if (type.find("Boolean") != std::string::npos) {
+            return new Boolean(val->get_string());
+        } else {
+            return new String();
+        }
+    }    
+
+*/
+/*
+TEST_F(dynamic_perceptSequenceTest, testEquals)
+{
+    bool b;
+    std::vector<dynamic_percept> v1;
+    std::vector<dynamic_percept> v2;
+
+    b = util::vec_compare(v1, v2);
+    ASSERT_TRUE(b);
+
+    v1.emplace_back(dynamic_percept("key1", "value1"));
+    b = util::vec_compare(v1, v2);
+    ASSERT_FALSE(b);
+
+    v2.emplace_back(dynamic_percept("key1", "value1"));
+    b = util::vec_compare(v1, v2);
+    ASSERT_TRUE(b);
+
+    v2.clear();
+    v2.emplace_back(dynamic_percept("key2", "value1"));
+    b = util::vec_compare(v1, v2);
+    ASSERT_FALSE(b);
+}
+
+
+    std::cout << "percept1: " << percept1.get_string() << std::endl;
+
+    vec.emplace_back(percept1);
+    std::cout << "percept1 from vector: " << vec[0].get_string() << std::endl;
+
+    auto percept2 = vec[0];
+    std::cout << "percept2: " << percept2.get_string() << std::endl;
+
+    std::cout.put('\n'); 
+    std::cout.put('\n'); 
+ 
+
+
+    //auto str1 = "dynamic_percept[key1=value1]";
+    //auto str2 = vec[0].get_string();
+    //std::cout << "Calling get_string on percept in vector: " << str2 << std::endl; 
+    //ASSERT_STREQ(str2.c_str(), str1);
+
+    vec.emplace_back(dynamic_percept(key1, val1));
+    auto str1 = "dynamic_percept[key1=value1]";
+    auto str2 = vec[0].get_string();
+    ASSERT_STREQ(str2.c_str(), str1);
+
+    vec.emplace_back(dynamic_percept("key1", "value1", "key2", "value2"));
+    auto str3 = "dynamic_percept[key1=value1], dynamic_percept[key1=value1, key2=value2]";
+    ASSERT_STREQ(util::print_vec(vec, str4).c_str(), str3);
+
+    //ASSERT_TRUE(true);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
