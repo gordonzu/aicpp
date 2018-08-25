@@ -22,11 +22,10 @@ public:
 */
 
     void add_to(const EnvironmentObject& eo, const XYLocation& loc);
-
+    size_t get_vector_size();
 /*
     void make_perimeter();
     XYLocation* get_location(EnvironmentObject& eo);
-    size_t get_vector_size();
     size_t get_set_size(const XYLocation& xy);
     std::set<EnvironmentObject*>& get_objects_near(EnvironmentObject& obj, unsigned);
     Vector& get_vector();

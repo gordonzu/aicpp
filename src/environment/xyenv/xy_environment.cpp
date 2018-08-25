@@ -25,13 +25,13 @@ XYEnvironment& XYEnvironment::operator=(const XYEnvironment &rhs)
         height = rhs.height;
     }
     return *this;
-}
+}*/
 
 size_t XYEnvironment::get_vector_size()
 {
     return state.vector_size();
 }
-
+/*
 size_t XYEnvironment::get_set_size(const XYLocation& xy)
 {
     return state.set_size(xy);
@@ -39,7 +39,7 @@ size_t XYEnvironment::get_set_size(const XYLocation& xy)
 
 void XYEnvironment::add_to(const EnvironmentObject& eo, const XYLocation& loc)
 {
-    //state.add_object(eo, loc);
+    state.add_object(eo, loc);
     //Environment::add_object(eo);
 }
 /*

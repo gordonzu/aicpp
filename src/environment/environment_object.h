@@ -20,10 +20,25 @@ using std::move;
 class EnvironmentObject {
 public:
     template<typename T> 
-    EnvironmentObject(const T& obj) : object{make_shared<model<T>>(move(obj))} {}
+    EnvironmentObject(const T& obj) : object{make_shared<model<T>>(move(obj))},
+                                      hashval{hash_it()} {} 
+                                     
 
     void add_() {
         object->add_();
+    }
+
+    bool operator==(const EnvironmentObject& x) const {
+        return hashval == x.hashval;
+    }
+
+    size_t hash_it() {
+        std::string name("environment_object");
+
+        for (unsigned i = 0; i < name.length(); ++i) {
+            hashval = (hashval << 6) ^ (hashval >> 26) ^ name[i]; 
+        }
+        return hashval;
     }
 
 private:
@@ -43,8 +58,9 @@ private:
 
     private:
     	T object;
-   };
-   shared_ptr<concept> object;
+    };
+    shared_ptr<concept> object;
+    size_t hashval;    
 };
 
 #endif //AICPP_OBJECT_H

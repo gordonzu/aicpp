@@ -25,23 +25,30 @@ namespace xy
             std::for_each(locs.begin(), locs.end(), [](XYLocation* xy){ delete xy; });
     }
 */
-    void XYState::add_object(EnvironmentObject& obj, const XYLocation& xy)
+    void XYState::add_object(const EnvironmentObject& obj, const XYLocation& xy)
     {
-        //check_for_object(obj);
+        check_for_object(obj);
         //std::set<EnvironmentObject*>* theset = get_set(xy);
         //theset->insert(&obj);
     }
-/*
-    void XYState::check_for_object(EnvironmentObject& obj)
+
+
+
+    void XYState::check_for_object(const EnvironmentObject& obj)
     {
-        for (itv = vec.begin(); itv != vec.end(); ++itv) {
-            if ((its = itv->second.find(&obj)) != itv->second.end()) {
-                itv->second.erase(its);
-                break;
+        for (auto& x : vec) {  
+            if (its = x.second.begin(); its != x.second.end()) { 
+                if (*its == obj) { 
+                    x.second.erase(its);
+                    break;
+                }
+                ++its;
             }
         }
     }
 
+
+/*
     std::set<EnvironmentObject*>* XYState::get_set(const XYLocation& xy)
     {
         if (has_xy(xy) != get_vector().end()) {
@@ -63,12 +70,15 @@ namespace xy
                     return (mypair.first == loc);
                 });
         return itv;
-    }
+    }*/
 
-    std::vector<std::pair<XYLocation, std::set<EnvironmentObject*>>>& XYState::get_vector()
+    //std::vector<std::pair<XYLocation, std::set<EnvironmentObject*>>>& XYState::get_vector()
+    std::vector<std::pair<XYLocation, std::vector<EnvironmentObject>>>& XYState::get_vector()
     {
         return vec;
-    }*/
+    }
+
+
 /*
     XYLocation* XYState::get_object_location(EnvironmentObject& obj)
     {
@@ -105,13 +115,13 @@ namespace xy
     size_t XYState::set_size(const XYLocation& xy)
     {
         return has_xy(xy)->second.size();
-    }
+    }*/
 
     size_t XYState::vector_size()
     {
         return XYState::get_vector().size();
     }
-
+/*
     void XYState::perimeter(unsigned w, unsigned h)
     {
         for (unsigned i =0; i < w; ++i) {
