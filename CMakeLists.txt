@@ -16,23 +16,26 @@ set(CMAKE_CXX_FLAGS "-std=c++17 -ggdb3 -Wall -Wno-unused-variable -O0 -fmax-erro
 set(
     sources
     main.cpp
+
+    src/agent/agent.cpp
+    src/environment/wall.cpp
     src/environment/environment.cpp
     src/environment/xyenv/xy_environment.cpp
     src/environment/xyenv/xy_environment_state.cpp
     src/util/datastructure/xy_location.cpp
-    src/agent/agent_programs/agent_program.cpp
+    #src/agent/agent_programs/agent_program.cpp
     src/agent/dynamic_object.cpp
     src/agent/action.cpp
     ##################################################
     # tests 
     ##################################################
-    test/percept_test.cpp
-	test/base_object_test.cpp
-    test/table_test.cpp
-    test/percept_sequence_test.cpp
+    #test/percept_test.cpp
+	#test/base_object_test.cpp
+    #test/table_test.cpp
+    #test/percept_sequence_test.cpp
     test/xy_environment_test.cpp
-    test/simple_rule_test.cpp
-    test/tabledriven_agent_program_test.cpp
+    #test/simple_rule_test.cpp
+    #test/tabledriven_agent_program_test.cpp
    )
 
 add_executable(aicpp ${sources})

@@ -10,11 +10,12 @@ namespace xy
             for (unsigned y = 1; y <= h; ++y) {
                 vec.emplace_back(
                         XYLocation{static_cast<int>(x), static_cast<int>(y)},
-                        std::set<EnvironmentObject*>());
+                        std::vector<EnvironmentObject>());
+                        //std::set<EnvironmentObject*>());
             }
         }
     }
-
+/*
     XYState::~XYState()
     {
         if (walls.size())
@@ -23,14 +24,14 @@ namespace xy
         if (locs.size())
             std::for_each(locs.begin(), locs.end(), [](XYLocation* xy){ delete xy; });
     }
-
+*/
     void XYState::add_object(EnvironmentObject& obj, const XYLocation& xy)
     {
-        check_for_object(obj);
-        std::set<EnvironmentObject*>* theset = get_set(xy);
-        theset->insert(&obj);
+        //check_for_object(obj);
+        //std::set<EnvironmentObject*>* theset = get_set(xy);
+        //theset->insert(&obj);
     }
-
+/*
     void XYState::check_for_object(EnvironmentObject& obj)
     {
         for (itv = vec.begin(); itv != vec.end(); ++itv) {
@@ -64,6 +65,11 @@ namespace xy
         return itv;
     }
 
+    std::vector<std::pair<XYLocation, std::set<EnvironmentObject*>>>& XYState::get_vector()
+    {
+        return vec;
+    }*/
+/*
     XYLocation* XYState::get_object_location(EnvironmentObject& obj)
     {
         for (itv = vec.begin(); itv != vec.end(); ++itv) {
@@ -94,11 +100,6 @@ namespace xy
             }
         }
         return false;
-    }
-
-    std::vector<std::pair<XYLocation, std::set<EnvironmentObject*>>>& XYState::get_vector()
-    {
-        return vec;
     }
 
     size_t XYState::set_size(const XYLocation& xy)
@@ -137,6 +138,6 @@ namespace xy
             ++itw;
             ++itx;
         }
-    }
+    }*/
 }
 

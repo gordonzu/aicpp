@@ -16,7 +16,7 @@ XYEnvironment::XYEnvironment(unsigned w, unsigned h):
     assert (height > 0);
 }
 
-XYEnvironment::~XYEnvironment() { }
+/*XYEnvironment::~XYEnvironment() { }
 
 XYEnvironment& XYEnvironment::operator=(const XYEnvironment &rhs)
 {
@@ -35,14 +35,14 @@ size_t XYEnvironment::get_vector_size()
 size_t XYEnvironment::get_set_size(const XYLocation& xy)
 {
     return state.set_size(xy);
-}
+}*/
 
-void XYEnvironment::add_to(EnvironmentObject& eo, const XYLocation& loc)
+void XYEnvironment::add_to(const EnvironmentObject& eo, const XYLocation& loc)
 {
-    state.add_object(eo, loc);
-    add_obj(&eo);
+    //state.add_object(eo, loc);
+    //Environment::add_object(eo);
 }
-
+/*
 XYLocation* XYEnvironment::get_location(EnvironmentObject& eo)
 {
     return state.get_object_location(eo);
@@ -98,7 +98,7 @@ Vector& XYEnvironment::get_vector()
 {
     return state.get_vector();
 }
-
+*/
 
 
 

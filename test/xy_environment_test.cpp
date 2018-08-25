@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include "gmock/gmock.h"
+#include "environment/wall.h"
 #include "environment/xyenv/xy_environment.h"
 
 using namespace::testing;
@@ -20,7 +21,7 @@ public:
     XYLocation loc{3, 4};
     XYEnvironment env{10, 12};
 };
-
+/*
 TEST_F(XYEnvironmentTest, testMatrixConstruction)
 {
     ASSERT_EQ(env.get_vector_size(), size_t(120));
@@ -223,7 +224,7 @@ TEST_F(XYEnvironmentTest, testMakePerimeter)
     ASSERT_TRUE(env.is_blocked(XYLocation{9, 11}));
     ASSERT_TRUE(env.is_blocked(XYLocation{6, 11}));
 }
-
+*/
 
 
 
