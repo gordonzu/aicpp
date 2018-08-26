@@ -38,7 +38,7 @@ TEST_F(XYEnvironmentTest, testMatrixConstruction) {
 }
 
 TEST_F(XYEnvironmentTest, testObjectIsUnique) {
-    auto xy = XYLocation{5,6};
+    XYLocation xy{5,6};
     env.add_to(agent, xy);
     ASSERT_EQ(env.inner_vector_size(xy), size_t(1));
     ASSERT_EQ(env.inner_vector_size(loc), size_t(0));
@@ -47,20 +47,20 @@ TEST_F(XYEnvironmentTest, testObjectIsUnique) {
 }
 
 TEST_F(XYEnvironmentTest, testGetCurrentLocation) {
-    auto xy = XYLocation{3,4};
+    XYLocation xy{3,4};
     ASSERT_EQ(env.get_location(agent), xy);
 
-    auto xy2 = XYLocation{12,5};
+    XYLocation xy2{12,5};
     ASSERT_NE(env.get_location(agent), xy2);
 }
 
 TEST_F(XYEnvironmentTest, testAddObjects) {
-    auto xyloc = XYLocation{9,9};
+    XYLocation xyloc{9,9};
     env.add_to(wall, xyloc);
     ASSERT_EQ(StaticEnvironment::get_agents().size(), size_t(1));
     ASSERT_EQ(StaticEnvironment::get_objects().size(), size_t(2));
 
-    auto xy = XYLocation{9,9};
+    XYLocation xy{9,9};
     ASSERT_EQ(env.inner_vector_size(xy), size_t(1));
 }
 
@@ -68,8 +68,8 @@ TEST_F(XYEnvironmentTest, testAddObjectTwice) {
     ASSERT_EQ(env.get_agents().size(), size_t(1));
 
     Agent agent1;
-    auto xyloc = XYLocation{5,5};
-    auto xy = XYLocation{5,5};
+    XYLocation xyloc{5,5};
+    XYLocation xy{5,5};
 
     env.add_to(agent1, xyloc);
     ASSERT_EQ(StaticEnvironment::get_agents().size(), size_t(2));
@@ -79,23 +79,23 @@ TEST_F(XYEnvironmentTest, testAddObjectTwice) {
 
 TEST_F(XYEnvironmentTest, testMoveObjectToAbsoluteLocation) {
     Agent a;
-    auto xyloc = XYLocation{5,5};
-    auto xy = XYLocation{5,5};
+    XYLocation xyloc{5,5};
+    XYLocation xy{5,5};
 
     env.add_to(a, xyloc);
     ASSERT_EQ(env.get_location(a), xy);
 }
 
 TEST_F(XYEnvironmentTest, testMoveObject) {
-    auto xyloc = XYLocation{5,5};
-    auto xy = XYLocation{5,5};
+    XYLocation xyloc{5,5};
+    XYLocation xy{5,5};
 
     env.add_to(agent, xyloc);
     ASSERT_EQ(env.get_location(agent), xy);
 
-    auto loc54 = XYLocation{5,4};
-    auto loc64 = XYLocation{6,4};
-    auto loc65 = XYLocation{6,5};
+    XYLocation loc54{5,4};
+    XYLocation loc64{6,4};
+    XYLocation loc65{6,5};
 
     env.move_object(agent, XYLocation::Direction::NORTH);
     ASSERT_EQ(env.get_location(agent), loc54);
@@ -108,7 +108,7 @@ TEST_F(XYEnvironmentTest, testMoveObject) {
 }
 
 TEST_F(XYEnvironmentTest, testIsBlocked) {
-    auto loc = XYLocation{5, 5};
+    XYLocation loc{5,5};
     ASSERT_EQ(env.inner_vector_size(loc), size_t(0));
     ASSERT_EQ(env.is_blocked(loc), false);
 
@@ -116,16 +116,15 @@ TEST_F(XYEnvironmentTest, testIsBlocked) {
     ASSERT_EQ(env.inner_vector_size(loc), size_t(1));
     ASSERT_EQ(env.is_blocked(loc), true);
 }
-/*
-TEST_F(XYEnvironmentTest, testMoveWithBlockingWalls)
-{
-    auto loc = XYLocation{5, 5};
+
+TEST_F(XYEnvironmentTest, testMoveWithBlockingWalls) {
+    XYLocation loc{5,5};
     env.add_to(agent, loc);
 
-    auto northloc = XYLocation{5, 6};
-    auto southloc = XYLocation{5, 4};
-    auto westloc = XYLocation{4, 5};
-    auto endloc = XYLocation{6, 5};
+    XYLocation northloc{5,6};
+    XYLocation southloc{5,4};
+    XYLocation westloc{4,5};
+    XYLocation endloc{6,5};
 
     Wall northwall;
     env.add_to(northwall, northloc);
@@ -135,15 +134,15 @@ TEST_F(XYEnvironmentTest, testMoveWithBlockingWalls)
     Wall westwall;
     env.add_to(southwall, southloc);
     env.add_to(westwall, westloc);
-    ASSERT_EQ(env.get_objs().size(), size_t(4));
+    ASSERT_EQ(StaticEnvironment::get_objects().size(), size_t(4));
 
     env.move_object(agent, XYLocation::Direction::NORTH); // should not move
     env.move_object(agent, XYLocation::Direction::SOUTH); // should not move
     env.move_object(agent, XYLocation::Direction::WEST);  // should not move
     env.move_object(agent, XYLocation::Direction::EAST);  // SHOULD move
-    ASSERT_EQ(*(env.get_location(agent)), endloc);
+    ASSERT_EQ(env.get_location(agent), endloc);
 }
-
+/*
 TEST_F(XYEnvironmentTest, testGetSet)
 {
     auto loc = XYLocation{5, 7};
