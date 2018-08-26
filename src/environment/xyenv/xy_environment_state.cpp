@@ -49,7 +49,7 @@ namespace xy
             return itv->second;
         }
 
-        if (!xy::XYState::vsize) create_vectors(); 
+        if (!vsize) create_vectors(); 
     
         vec.emplace_back(xy, vector_objects[--vsize]);
         return has_xy(xy)->second;
