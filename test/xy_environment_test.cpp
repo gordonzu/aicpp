@@ -12,8 +12,7 @@ using namespace::testing;
 
 class XYEnvironmentTest: public Test {
 public:
-    void SetUp() override
-    {
+    void SetUp() override {
         env.add_to(agent, loc);
    	}
 
@@ -30,8 +29,7 @@ TEST_F(XYEnvironmentTest, testMatrixConstruction) {
     env.add_to(wall, loc);
     ASSERT_EQ(env.inner_vector_size(loc), size_t(2));
     ASSERT_EQ(StaticEnvironment::get_objects().size(), size_t(2));
-    //ASSERT_EQ(Environment::get_agents().size(), size_t(1));
-    //std::cout << "get agents: " << Environment::get_agents().size() << std::endl;
+    ASSERT_EQ(StaticEnvironment::get_agents().size(), size_t(1));
 }
 
 /*

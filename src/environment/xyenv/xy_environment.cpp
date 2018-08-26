@@ -36,7 +36,6 @@ size_t XYEnvironment::inner_vector_size(const XYLocation& xy) {
 void XYEnvironment::add_to(const EnvironmentObject& eo, const XYLocation& loc) {
     state.add_object(eo, loc);
     StaticEnvironment::add_object(eo);
-    //std::cout << "StaticEnvironment vector: " << StaticEnvironment::get_objects().size() << std::endl;
 }
 /*
 XYLocation* XYEnvironment::get_location(EnvironmentObject& eo)
