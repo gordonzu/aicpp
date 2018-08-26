@@ -67,6 +67,21 @@ Map& XYState::get_vector() {
     return m;
 }
 
+XYLocation XYState::get_object_location(const EnvironmentObject& obj)
+{
+    for (itv = m.begin(); itv != m.end(); ++itv) {
+        if (std::find(itv->second.begin(), 
+                      itv->second.end(), obj) 
+                      != itv->second.end()) { 
+                      return itv->first;
+        }
+    }     
+        //if ((its = itv->second.find(obj)) != itv->second.end()) {
+            //return itv->first;
+        //}
+    return XYLocation{0,0};
+}
+
 
 /*
     std::set<EnvironmentObject*>* XYState::get_set(const XYLocation& xy)
@@ -85,16 +100,6 @@ Map& XYState::get_vector() {
 
 
 /*
-    XYLocation* XYState::get_object_location(EnvironmentObject& obj)
-    {
-        for (itv = m.begin(); itv != m.end(); ++itv) {
-            if ((its = itv->second.find(&obj)) != itv->second.end()) {
-                return &(itv->first);
-            }
-        }
-        return nullptr;
-    }
-
     void XYState::move_object(EnvironmentObject& obj, const XYLocation::Direction& dir)
     {
         XYLocation* temp = get_object_location(obj);

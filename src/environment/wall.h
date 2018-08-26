@@ -12,6 +12,7 @@ public:
     const char* talk();
     size_t hash_it();
 
+    bool operator==(const Wall& x) const; 
     friend std::ostream& operator<<(std::ostream& out, const Wall& x);
 
 private:

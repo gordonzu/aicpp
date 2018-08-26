@@ -15,6 +15,8 @@ public:
     Agent(AgentProgram* program);
     ~Agent() = default;
 
+   bool operator==(const Agent& x) const; 
+
     bool set_program(AgentProgram* program);
     Action execute(const Percept& per); 
     void add();

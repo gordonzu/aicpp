@@ -1,15 +1,12 @@
-// Created by gordonzu on 3/23/18.
-//
+// by gordonzu on 3/23/18.
 
-#ifndef XYSTATE_H
-#define XYSTATE_H
+#ifndef AICPP_XYSTATE_H
+#define AICPPXYSTATE_H
 
 #include <memory>
 #include <iostream>
 #include <vector>
-#include <set>
 #include <algorithm>
-#include <map>
 #include "environment/environment_object.h"
 #include "util/datastructure/xy_location.h"
 
@@ -24,9 +21,9 @@ public:
     size_t vector_size();
     Map& get_vector();
     size_t inner_vector_size(const XYLocation& xy);
+    XYLocation get_object_location(const EnvironmentObject& obj);
 
-
-/*      XYLocation* get_object_location(EnvironmentObject& obj);
+/*      
         ~XYState();
         void move_object(EnvironmentObject& obj, const XYLocation::Direction& dir);
         bool is_blocked(const XYLocation& xy);

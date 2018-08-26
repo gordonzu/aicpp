@@ -2,6 +2,10 @@
 
 Wall::Wall() : hashval{hash_it()} {}
 
+bool Wall::operator==(const Wall& x) const {
+    return hashval == x.hashval;
+}
+
 void Wall::add() {
     StaticEnvironment::add_environment_object(*this);    
 }

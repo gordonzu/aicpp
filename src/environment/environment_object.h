@@ -31,6 +31,10 @@ public:
         return object->print_object_() == x.object->print_object_();
     }
 
+    bool operator==(EnvironmentObject& x) const {
+        return object->print_object_() == x.object->print_object_();
+    }
+
     friend std::string print_object(const EnvironmentObject& x) {
         return x.object->print_object_();      
     }

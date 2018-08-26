@@ -5,6 +5,10 @@ Agent::Agent(): ap{nullptr}, hashval{hash_it()} {}
 
 Agent::Agent(AgentProgram* program): ap{program}, hashval{hash_it()} {}
 
+bool Agent::operator==(const Agent& x) const {
+    return hashval == x.hashval;
+}
+
 bool Agent::set_program(AgentProgram* program) {
     if (program) {
         ap = program;

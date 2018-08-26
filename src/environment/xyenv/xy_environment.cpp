@@ -1,4 +1,4 @@
-// xy_environment.cpp
+// xy_environment.cpp by gordonzu 8/26/18
 
 #include <iostream>
 #include <cmath>
@@ -7,10 +7,7 @@
 #include <algorithm>
 #include "environment/xyenv/xy_environment.h"
 
-XYEnvironment::XYEnvironment(unsigned w, unsigned h):
-                            width{w},
-                            height{h},
-                            state{w,h} {
+XYEnvironment::XYEnvironment(unsigned w, unsigned h) : width{w}, height{h}, state{w,h} {
     assert (width > 0);
     assert (height > 0);
 }
@@ -37,12 +34,13 @@ void XYEnvironment::add_to(const EnvironmentObject& eo, const XYLocation& loc) {
     state.add_object(eo, loc);
     StaticEnvironment::add_object(eo);
 }
-/*
-XYLocation* XYEnvironment::get_location(EnvironmentObject& eo)
+
+XYLocation XYEnvironment::get_location(const EnvironmentObject& eo)
 {
     return state.get_object_location(eo);
 }
 
+/*
 void XYEnvironment::move_object(EnvironmentObject& eo, const XYLocation::Direction& dir)
 {
     state.move_object(eo, dir);

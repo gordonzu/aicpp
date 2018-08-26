@@ -14,6 +14,8 @@ public:
     XYEnvironment(unsigned w, unsigned h);
     virtual ~XYEnvironment();
     XYEnvironment& operator=(const XYEnvironment& rhs);
+    XYLocation get_location(const EnvironmentObject& eo);
+
 /*
     bool is_blocked(const XYLocation& xy);
     bool is_blocked(const XYLocation&& xy);
@@ -26,7 +28,6 @@ public:
     size_t inner_vector_size(const XYLocation& xy);
 /*
     void make_perimeter();
-    XYLocation* get_location(EnvironmentObject& eo);
     std::set<EnvironmentObject*>& get_objects_near(EnvironmentObject& obj, unsigned);
     Vector& get_vector();
 */

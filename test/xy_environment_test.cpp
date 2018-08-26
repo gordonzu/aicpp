@@ -16,6 +16,11 @@ public:
         env.add_to(agent, loc);
    	}
 
+    void TearDown() override {
+        StaticEnvironment::get_objects().clear();
+        StaticEnvironment::get_agents().clear();
+    }
+
     Agent agent;
     Wall wall;
     XYLocation loc{3, 4};
@@ -37,24 +42,16 @@ TEST_F(XYEnvironmentTest, testObjectIsUnique) {
     env.add_to(agent, xy);
     ASSERT_EQ(env.inner_vector_size(xy), size_t(1));
     ASSERT_EQ(env.inner_vector_size(loc), size_t(0));
-}
-/*
-TEST_F(XYEnvironmentTest, testBaseClassContainers)
-{
-    Agent a;
-    Wall w;
-    env.add_to(a, loc);
-    env.add_to(w, loc);
-    ASSERT_EQ(env.get_agents().size(), size_t(2));
-    ASSERT_EQ(env.get_objs().size(), size_t(3));
+    ASSERT_EQ(StaticEnvironment::get_objects().size(), size_t(1));
+    ASSERT_EQ(StaticEnvironment::get_agents().size(), size_t(1));
 }
 
 TEST_F(XYEnvironmentTest, testGetCurrentLocation)
 {
     auto xy = XYLocation{3, 4};
-    ASSERT_EQ(*(env.get_location(agent)), xy);
+    ASSERT_EQ(env.get_location(agent), xy);
 }
-
+/*
 TEST_F(XYEnvironmentTest, testAddObject2)
 {
     auto xyloc = XYLocation{9, 9};
