@@ -21,16 +21,16 @@ public:
     XYLocation loc{3, 4};
     XYEnvironment env{10, 12};
 };
-/*
+
 TEST_F(XYEnvironmentTest, testMatrixConstruction)
 {
     ASSERT_EQ(env.get_vector_size(), size_t(120));
-    ASSERT_EQ(env.get_set_size(loc), size_t(1));
-    env.add_to(wall, loc);
-    ASSERT_EQ(env.get_set_size(loc), size_t(2));
+    //ASSERT_EQ(env.get_set_size(loc), size_t(1));
+    //env.add_to(wall, loc);
+    //ASSERT_EQ(env.get_set_size(loc), size_t(2));
 }
 
-
+/*
 TEST_F(XYEnvironmentTest, testObjectIsUnique)
 {
     auto xy = XYLocation{5, 6};
