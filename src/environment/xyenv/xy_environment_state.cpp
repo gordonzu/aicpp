@@ -118,11 +118,11 @@ namespace xy
         }
         return false;
     }
-
-    size_t XYState::set_size(const XYLocation& xy)
+*/
+    size_t XYState::inner_vector_size(const XYLocation& xy)
     {
         return has_xy(xy)->second.size();
-    }*/
+    }
 
     size_t XYState::vector_size()
     {

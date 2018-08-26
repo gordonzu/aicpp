@@ -25,7 +25,7 @@ public:
 TEST_F(XYEnvironmentTest, testMatrixConstruction)
 {
     ASSERT_EQ(env.get_vector_size(), size_t(120));
-    //ASSERT_EQ(env.get_set_size(loc), size_t(1));
+    ASSERT_EQ(env.inner_vector_size(loc), size_t(1));
     //env.add_to(wall, loc);
     //ASSERT_EQ(env.get_set_size(loc), size_t(2));
 }

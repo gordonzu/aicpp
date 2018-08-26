@@ -29,13 +29,13 @@ namespace xy {
         void check_for_object(const EnvironmentObject& obj);
         std::vector<EnvironmentObject>& check_vector(const XYLocation& loc);
         Vector::iterator has_xy(const XYLocation& loc);
+        size_t inner_vector_size(const XYLocation& xy);
 
 
 /*      XYLocation* get_object_location(EnvironmentObject& obj);
         ~XYState();
         void move_object(EnvironmentObject& obj, const XYLocation::Direction& dir);
         bool is_blocked(const XYLocation& xy);
-        size_t set_size(const XYLocation& xy);
         void perimeter(unsigned w, unsigned h);
 */
     private:

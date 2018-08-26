@@ -33,16 +33,16 @@ size_t XYEnvironment::get_vector_size()
 {
     return state.vector_size();
 }
-/*
-size_t XYEnvironment::get_set_size(const XYLocation& xy)
+
+size_t XYEnvironment::inner_vector_size(const XYLocation& xy)
 {
-    return state.set_size(xy);
-}*/
+    return state.inner_vector_size(xy);
+}
 
 void XYEnvironment::add_to(const EnvironmentObject& eo, const XYLocation& loc)
 {
     state.add_object(eo, loc);
-    //Environment::add_object(eo);
+    Environment::add_object(eo);
 }
 /*
 XYLocation* XYEnvironment::get_location(EnvironmentObject& eo)
