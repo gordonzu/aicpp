@@ -11,12 +11,14 @@ public:
     void add();
     const char* talk();
     size_t hash_it();
+    bool is_wall();
 
     bool operator==(const Wall& x) const; 
     friend std::ostream& operator<<(std::ostream& out, const Wall& x);
 
 private:
-    size_t hashval; 
+    size_t hashval;
+    bool flag{true}; 
 };
 #endif
 

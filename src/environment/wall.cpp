@@ -23,6 +23,10 @@ size_t Wall::hash_it() {
     return hashval;
 }
 
+bool Wall::is_wall() {
+    return flag;
+}
+
 std::ostream& operator<<(std::ostream& out, const Wall& x) {
     out << "wall:" << x.hashval;
     return out;

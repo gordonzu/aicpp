@@ -22,12 +22,14 @@ public:
     void add();
     const char* talk();
     size_t hash_it();
+    bool is_wall();
 
     friend std::ostream& operator<<(std::ostream& out, const Agent& x);
  
 protected:
     AgentProgram* ap;
     size_t hashval;
+    bool flag{false};
 };
 #endif //AICPP_AGENT_H
 

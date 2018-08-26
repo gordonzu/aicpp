@@ -42,6 +42,10 @@ size_t Agent::hash_it() {
     return hashval;
 }
 
+bool Agent::is_wall() {
+    return flag;
+}
+
 std::ostream& operator<<(std::ostream& out, const Agent& x) {
     out << "agent:" << x.hashval;
     return out;

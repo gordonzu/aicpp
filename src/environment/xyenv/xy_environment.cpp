@@ -35,17 +35,15 @@ void XYEnvironment::add_to(const EnvironmentObject& eo, const XYLocation& loc) {
     StaticEnvironment::add_object(eo);
 }
 
-XYLocation XYEnvironment::get_location(const EnvironmentObject& eo)
-{
+XYLocation XYEnvironment::get_location(const EnvironmentObject& eo) {
     return state.get_object_location(eo);
 }
 
-/*
-void XYEnvironment::move_object(EnvironmentObject& eo, const XYLocation::Direction& dir)
-{
+void XYEnvironment::move_object(const EnvironmentObject& eo, const XYLocation::Direction& dir) {
     state.move_object(eo, dir);
 }
 
+/*
 bool XYEnvironment::is_blocked(const XYLocation &xy)
 {
     return state.is_blocked(xy);

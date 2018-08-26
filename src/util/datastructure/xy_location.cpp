@@ -45,53 +45,53 @@ bool XYLocation::operator!=(const XYLocation& rhs) const  {
         return ((x_ != rhs.x_) || (y_ != rhs.y_));
 }
 
-XYLocation* XYLocation::west()
+XYLocation XYLocation::west()
 {
-    tmpxy = std::make_unique<XYLocation>(x_ - 1, y_);
-    return tmpxy.get();
+    XYLocation tmpxy{x_ - 1, y_};
+    return tmpxy;
 }
 
-XYLocation* XYLocation::east()
+XYLocation XYLocation::east()
 {
-    tmpxy = std::make_unique<XYLocation>(x_ + 1, y_);
-    return tmpxy.get();
+    XYLocation tmpxy{x_ + 1, y_};
+    return tmpxy;
 }
 
-XYLocation* XYLocation::north()
+XYLocation XYLocation::north()
 {
-    tmpxy = std::make_unique<XYLocation>(x_, y_ -1);
-    return tmpxy.get();
+    XYLocation tmpxy{x_, y_ -1};
+    return tmpxy;
 }
 
-XYLocation* XYLocation::south()
+XYLocation XYLocation::south()
 {
-    tmpxy = std::make_unique<XYLocation>(x_, y_ + 1);
-    return tmpxy.get();
+    XYLocation tmpxy{x_, y_ + 1};
+    return tmpxy;
 }
 
-XYLocation* XYLocation::right()
+XYLocation XYLocation::right()
 {
     return east();
 }
 
-XYLocation* XYLocation::left()
+XYLocation XYLocation::left()
 {
     return west();
 }
 
-XYLocation* XYLocation::up()
+XYLocation XYLocation::up()
 {
     return north();
 }
 
-XYLocation* XYLocation::down()
+XYLocation XYLocation::down()
 {
     return south();
 }
 
-XYLocation* XYLocation::location_at(const Direction& direction)
+XYLocation XYLocation::location_at(const Direction& direction)
 {
-    XYLocation* xy;
+    XYLocation xy;
     try
     {
         switch (direction) 

@@ -27,6 +27,10 @@ public:
         object->add_();
     }
 
+    bool is_wall() {
+        return object->is_wall_();
+    }
+
     bool operator==(const EnvironmentObject& x) const {
         return object->print_object_() == x.object->print_object_();
     }
@@ -48,6 +52,7 @@ private:
 	struct concept {
     	virtual ~concept() {}
         virtual void add_() = 0;
+        virtual bool is_wall_() = 0;
         virtual std::string  print_object_() const = 0;
    	};
 
@@ -63,6 +68,10 @@ private:
         std::string print_object_() const override {
             return print_string(object);    
         } 
+
+        bool is_wall_() override {
+            return object.is_wall();
+        }
 
     private:
     	T object;

@@ -67,8 +67,7 @@ Map& XYState::get_vector() {
     return m;
 }
 
-XYLocation XYState::get_object_location(const EnvironmentObject& obj)
-{
+XYLocation XYState::get_object_location(const EnvironmentObject& obj) {
     for (itv = m.begin(); itv != m.end(); ++itv) {
         if (std::find(itv->second.begin(), 
                       itv->second.end(), obj) 
@@ -76,12 +75,29 @@ XYLocation XYState::get_object_location(const EnvironmentObject& obj)
                       return itv->first;
         }
     }     
-        //if ((its = itv->second.find(obj)) != itv->second.end()) {
-            //return itv->first;
-        //}
     return XYLocation{0,0};
 }
 
+void XYState::move_object(const EnvironmentObject& obj, const XYLocation::Direction& dir) {
+    XYLocation tmp = get_object_location(obj);
+
+    if (tmp != nullxy) {
+        tmp = tmp.location_at(dir);
+        if (!(is_blocked(tmp))) {
+            add_object(obj, tmp);
+        }
+    }
+}
+
+bool XYState::is_blocked(const XYLocation& xy)
+{
+    for (auto& eo : check_vector(xy)) {
+        if (eo.is_wall()) {
+            return true;
+        }
+    }
+    return false;
+}
 
 /*
     std::set<EnvironmentObject*>* XYState::get_set(const XYLocation& xy)
@@ -100,27 +116,7 @@ XYLocation XYState::get_object_location(const EnvironmentObject& obj)
 
 
 /*
-    void XYState::move_object(EnvironmentObject& obj, const XYLocation::Direction& dir)
-    {
-        XYLocation* temp = get_object_location(obj);
 
-        if (temp != nullptr) {
-            temp = temp->location_at(dir);
-            if (!(is_blocked(*temp))) {
-                add_object(obj, *temp);
-            }
-        }
-    }
-
-    bool XYState::is_blocked(const XYLocation& xy)
-    {
-        for (auto& eo : *(get_set(xy))) {
-            if (static_cast<Wall*>(eo)) {
-                return true;
-            }
-        }
-        return false;
-    }
 */
 size_t XYState::inner_vector_size(const XYLocation& xy)
 {

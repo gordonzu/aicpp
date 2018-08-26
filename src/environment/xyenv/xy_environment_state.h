@@ -22,11 +22,11 @@ public:
     Map& get_vector();
     size_t inner_vector_size(const XYLocation& xy);
     XYLocation get_object_location(const EnvironmentObject& obj);
+    void move_object(const EnvironmentObject& obj, const XYLocation::Direction& dir);
+    bool is_blocked(const XYLocation& xy);
 
 /*      
         ~XYState();
-        void move_object(EnvironmentObject& obj, const XYLocation::Direction& dir);
-        bool is_blocked(const XYLocation& xy);
         void perimeter(unsigned w, unsigned h);
 */
 private:
@@ -36,6 +36,7 @@ private:
     void create_vectors();
 
     static int vsize;
+    XYLocation nullxy{0,0};
     Map m;
     Map::iterator itv;
     std::vector<EnvironmentObject>::iterator its;

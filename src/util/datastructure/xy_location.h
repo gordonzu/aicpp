@@ -22,18 +22,18 @@ public:
     int getx() const;
     int gety() const;
 
-    XYLocation* west();
-    XYLocation* east();
-    XYLocation* north();
-    XYLocation* south();
-    XYLocation* left();
-    XYLocation* right();
-    XYLocation* up();
-    XYLocation* down();
-    XYLocation* location_at(const Direction& direction);
+    XYLocation west();
+    XYLocation east();
+    XYLocation north();
+    XYLocation south();
+    XYLocation left();
+    XYLocation right();
+    XYLocation up();
+    XYLocation down();
+    XYLocation location_at(const Direction& direction);
 
 private:
-    std::unique_ptr<XYLocation> tmpxy;
+    //XYLocation tmpxy;
     int x_;
     int y_;
 };

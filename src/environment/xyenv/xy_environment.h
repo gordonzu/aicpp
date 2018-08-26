@@ -15,12 +15,12 @@ public:
     virtual ~XYEnvironment();
     XYEnvironment& operator=(const XYEnvironment& rhs);
     XYLocation get_location(const EnvironmentObject& eo);
+    void move_object(const EnvironmentObject& eo, const XYLocation::Direction& dir);
 
 /*
     bool is_blocked(const XYLocation& xy);
     bool is_blocked(const XYLocation&& xy);
     bool in_radius(unsigned rad, const XYLocation& loca, const XYLocation& locb);
-    void move_object(EnvironmentObject& eo, const XYLocation::Direction& dir);
 */
 
     void add_to(const EnvironmentObject& eo, const XYLocation& loc);
