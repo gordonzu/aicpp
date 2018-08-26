@@ -9,7 +9,7 @@
 #include "environment_object.h"
 #include "agent/agent.h"
 
-class Environment {
+class StaticEnvironment {
 public:
     static void add_environment_object(EnvironmentObject eo);
     static void add_object(EnvironmentObject eo);

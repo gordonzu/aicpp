@@ -7,42 +7,36 @@
 #include <algorithm>
 #include "environment/xyenv/xy_environment.h"
 
-
-
 XYEnvironment::XYEnvironment(unsigned w, unsigned h):
                             width{w},
                             height{h},
-                            state{w,h}
-{
+                            state{w,h} {
     assert (width > 0);
     assert (height > 0);
 }
 
-/*XYEnvironment::~XYEnvironment() { }
+XYEnvironment::~XYEnvironment() { }
 
-XYEnvironment& XYEnvironment::operator=(const XYEnvironment &rhs)
-{
+XYEnvironment& XYEnvironment::operator=(const XYEnvironment &rhs) {
     if (&rhs != this) {
         width = rhs.width;
         height = rhs.height;
     }
     return *this;
-}*/
+}
 
-size_t XYEnvironment::get_vector_size()
-{
+size_t XYEnvironment::get_vector_size() {
     return state.vector_size();
 }
 
-size_t XYEnvironment::inner_vector_size(const XYLocation& xy)
-{
+size_t XYEnvironment::inner_vector_size(const XYLocation& xy) {
     return state.inner_vector_size(xy);
 }
 
-void XYEnvironment::add_to(const EnvironmentObject& eo, const XYLocation& loc)
-{
+void XYEnvironment::add_to(const EnvironmentObject& eo, const XYLocation& loc) {
     state.add_object(eo, loc);
-    Environment::add_object(eo);
+    StaticEnvironment::add_object(eo);
+    //std::cout << "StaticEnvironment vector: " << StaticEnvironment::get_objects().size() << std::endl;
 }
 /*
 XYLocation* XYEnvironment::get_location(EnvironmentObject& eo)

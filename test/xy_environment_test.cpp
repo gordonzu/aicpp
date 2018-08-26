@@ -5,6 +5,7 @@
 #include <vector>
 #include "gmock/gmock.h"
 #include "environment/wall.h"
+#include "environment/environment.h"
 #include "environment/xyenv/xy_environment.h"
 
 using namespace::testing;
@@ -22,12 +23,15 @@ public:
     XYEnvironment env{10, 12};
 };
 
-TEST_F(XYEnvironmentTest, testMatrixConstruction)
-{
+TEST_F(XYEnvironmentTest, testMatrixConstruction) {
     ASSERT_EQ(env.get_vector_size(), size_t(120));
     ASSERT_EQ(env.inner_vector_size(loc), size_t(1));
-    //env.add_to(wall, loc);
-    //ASSERT_EQ(env.get_set_size(loc), size_t(2));
+
+    env.add_to(wall, loc);
+    ASSERT_EQ(env.inner_vector_size(loc), size_t(2));
+    ASSERT_EQ(StaticEnvironment::get_objects().size(), size_t(2));
+    //ASSERT_EQ(Environment::get_agents().size(), size_t(1));
+    //std::cout << "get agents: " << Environment::get_agents().size() << std::endl;
 }
 
 /*

@@ -8,12 +8,12 @@
 #include "util/datastructure/xy_location.h"
 #include "xy_environment_state.h"
 
-class XYEnvironment: public Environment {
+class XYEnvironment: public StaticEnvironment {
 public:
     XYEnvironment() = delete;
     XYEnvironment(unsigned w, unsigned h);
-    //virtual ~XYEnvironment();
-    //XYEnvironment& operator=(const XYEnvironment& rhs);
+    virtual ~XYEnvironment();
+    XYEnvironment& operator=(const XYEnvironment& rhs);
 /*
     bool is_blocked(const XYLocation& xy);
     bool is_blocked(const XYLocation&& xy);
@@ -31,11 +31,10 @@ public:
     Vector& get_vector();
 */
 private:
-    unsigned                                        width;
-    unsigned                                        height;
-    xy::XYState                                     state;
-    //std::unique_ptr<std::set<EnvironmentObject*>>   near_set;
-    std::vector<EnvironmentObject>                  near_set;
+    unsigned width;
+    unsigned height;
+    XYState state;
+    std::vector<EnvironmentObject> near_set;
 };
 #endif
 

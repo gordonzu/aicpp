@@ -23,8 +23,8 @@ Action Agent::execute(const Percept& per) {
 }
 
 void Agent::add() {
-    Environment::add_environment_object(*this);
-    Environment::add_agent(*this);
+    StaticEnvironment::add_environment_object(*this);
+    StaticEnvironment::add_agent(*this);
 }
 
 const char* Agent::talk() { return "Agent..."; }

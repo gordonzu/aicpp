@@ -3,7 +3,7 @@
 Wall::Wall() {}
 
 void Wall::add() {
-    Environment::add_environment_object(*this);    
+    StaticEnvironment::add_environment_object(*this);    
 }
 
 const char* Wall::talk() {

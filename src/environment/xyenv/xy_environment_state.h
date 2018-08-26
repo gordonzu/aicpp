@@ -13,23 +13,17 @@
 #include "environment/environment_object.h"
 #include "util/datastructure/xy_location.h"
 
-//using Vector = std::vector<std::pair<XYLocation, std::set<EnvironmentObject*>>>;
-using Vector = std::vector<std::pair<XYLocation, std::vector<EnvironmentObject>>>;
+using Map = std::vector<std::pair<XYLocation, std::vector<EnvironmentObject>>>;
 
-namespace xy {
+class XYState {
 
-    class XYState {
-
-    public:
-        XYState(unsigned w, unsigned h);
-
-        void add_object(const EnvironmentObject& obj, const XYLocation& xy);
-        size_t vector_size();
-        Vector& get_vector();
-        void check_for_object(const EnvironmentObject& obj);
-        std::vector<EnvironmentObject>& check_vector(const XYLocation& loc);
-        Vector::iterator has_xy(const XYLocation& loc);
-        size_t inner_vector_size(const XYLocation& xy);
+public:
+    XYState(unsigned w, unsigned h);
+    ~XYState();
+    void add_object(const EnvironmentObject& obj, const XYLocation& xy);
+    size_t vector_size();
+    Map& get_vector();
+    size_t inner_vector_size(const XYLocation& xy);
 
 
 /*      XYLocation* get_object_location(EnvironmentObject& obj);
@@ -38,22 +32,23 @@ namespace xy {
         bool is_blocked(const XYLocation& xy);
         void perimeter(unsigned w, unsigned h);
 */
-    private:
-        void create_vectors();
+private:
+    std::vector<EnvironmentObject>& check_vector(const XYLocation& loc);
+    Map::iterator has_xy(const XYLocation& loc);
+    void check_object(const EnvironmentObject& obj);
+    void create_vectors();
 
-        static int vsize;
-        Vector vec;
-        Vector::iterator itv;
-        std::vector<EnvironmentObject>::iterator its;
-        std::vector<EnvironmentObject> objects;
-        std::vector<std::vector<EnvironmentObject>> vector_objects;
-        
+    static int vsize;
+    Map m;
+    Map::iterator itv;
+    std::vector<EnvironmentObject>::iterator its;
+    std::vector<EnvironmentObject> objects;
+    std::vector<std::vector<EnvironmentObject>> vector_objects;
+    
         //std::set<EnvironmentObject*>::iterator its;
 /*
         std::unique_ptr<std::set<EnvironmentObject*>> set;
         std::vector<Wall*> walls;
         std::vector<XYLocation*> locs;*/
     };
-}
-
 #endif //XYSTATE_H
