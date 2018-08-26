@@ -43,11 +43,11 @@ void XYEnvironment::move_object(const EnvironmentObject& eo, const XYLocation::D
     state.move_object(eo, dir);
 }
 
-/*
-bool XYEnvironment::is_blocked(const XYLocation &xy)
-{
+bool XYEnvironment::is_blocked(const XYLocation &xy) {
     return state.is_blocked(xy);
 }
+
+/*
 
 bool XYEnvironment::is_blocked(const XYLocation &&xy)
 {

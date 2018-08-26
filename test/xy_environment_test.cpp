@@ -106,18 +106,17 @@ TEST_F(XYEnvironmentTest, testMoveObject) {
     env.move_object(agent, XYLocation::Direction::WEST);
     ASSERT_EQ(env.get_location(agent), xy);
 }
-/*
-TEST_F(XYEnvironmentTest, testIsBlocked)
-{
+
+TEST_F(XYEnvironmentTest, testIsBlocked) {
     auto loc = XYLocation{5, 5};
-    ASSERT_EQ(env.get_set_size(loc), size_t(0));
+    ASSERT_EQ(env.inner_vector_size(loc), size_t(0));
     ASSERT_EQ(env.is_blocked(loc), false);
 
     env.add_to(wall, loc);
-    ASSERT_EQ(env.get_set_size(loc), size_t(1));
+    ASSERT_EQ(env.inner_vector_size(loc), size_t(1));
     ASSERT_EQ(env.is_blocked(loc), true);
 }
-
+/*
 TEST_F(XYEnvironmentTest, testMoveWithBlockingWalls)
 {
     auto loc = XYLocation{5, 5};
