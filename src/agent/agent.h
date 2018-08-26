@@ -17,11 +17,15 @@ public:
 
     bool set_program(AgentProgram* program);
     Action execute(const Percept& per); 
-    void add(); 
+    void add();
     const char* talk();
+    size_t hash_it();
 
+    friend std::ostream& operator<<(std::ostream& out, const Agent& x);
+ 
 protected:
     AgentProgram* ap;
+    size_t hashval;
 };
 #endif //AICPP_AGENT_H
 

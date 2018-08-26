@@ -33,7 +33,7 @@ void XYState::add_object(const EnvironmentObject& obj, const XYLocation& xy) {
 void XYState::check_object(const EnvironmentObject& obj) {
     for (auto& x : m) {  
         if (its = x.second.begin(); its != x.second.end()) { 
-            if (*its == obj) { 
+            if (*its == obj) {
                 x.second.erase(its);
                 break;
             }

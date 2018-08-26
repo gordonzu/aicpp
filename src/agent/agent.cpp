@@ -1,9 +1,9 @@
 #include "agent.h"
 #include "environment/environment.h"
 
-Agent::Agent(): ap{nullptr} {} 
+Agent::Agent(): ap{nullptr}, hashval{hash_it()} {} 
 
-Agent::Agent(AgentProgram* program): ap{program} {}
+Agent::Agent(AgentProgram* program): ap{program}, hashval{hash_it()} {}
 
 bool Agent::set_program(AgentProgram* program) {
     if (program) {
@@ -22,10 +22,24 @@ Action Agent::execute(const Percept& per) {
     return Action{};
 }
 
+const char* Agent::talk() { return "Agent..."; }
+
 void Agent::add() {
     StaticEnvironment::add_environment_object(*this);
     StaticEnvironment::add_agent(*this);
 }
 
-const char* Agent::talk() { return "Agent..."; }
+size_t Agent::hash_it() {
+    std::string name("agent");
+
+    for (unsigned i = 0; i < name.length(); ++i) {
+        hashval = (hashval << 6) ^ (hashval >> 26) ^ name[i]; 
+    }
+    return hashval;
+}
+
+std::ostream& operator<<(std::ostream& out, const Agent& x) {
+    out << "agent:" << x.hashval;
+    return out;
+}
 

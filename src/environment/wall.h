@@ -9,7 +9,13 @@ class Wall {
 public:
     Wall();
     void add();
-    const char* talk(); 
+    const char* talk();
+    size_t hash_it();
+
+    friend std::ostream& operator<<(std::ostream& out, const Wall& x);
+
+private:
+    size_t hashval; 
 };
 #endif
 

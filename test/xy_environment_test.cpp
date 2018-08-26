@@ -32,15 +32,13 @@ TEST_F(XYEnvironmentTest, testMatrixConstruction) {
     ASSERT_EQ(StaticEnvironment::get_agents().size(), size_t(1));
 }
 
-/*
-TEST_F(XYEnvironmentTest, testObjectIsUnique)
-{
+TEST_F(XYEnvironmentTest, testObjectIsUnique) {
     auto xy = XYLocation{5, 6};
     env.add_to(agent, xy);
-    ASSERT_EQ(env.get_set_size(xy), size_t(1));
-    ASSERT_EQ(env.get_set_size(loc), size_t(0));
+    ASSERT_EQ(env.inner_vector_size(xy), size_t(1));
+    ASSERT_EQ(env.inner_vector_size(loc), size_t(0));
 }
-
+/*
 TEST_F(XYEnvironmentTest, testBaseClassContainers)
 {
     Agent a;
