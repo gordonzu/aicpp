@@ -4,8 +4,9 @@
 
 namespace xy
 {
-    XYState::XYState(unsigned w, unsigned h)
-    {
+    int XYState::vsize = 0;
+
+    XYState::XYState(unsigned w, unsigned h) {
         for (unsigned x = 1; x <= w; ++x) {
             for (unsigned y = 1; y <= h; ++y) {
                 vec.emplace_back(
@@ -14,6 +15,7 @@ namespace xy
                         //std::set<EnvironmentObject*>());
             }
         }
+        create_vectors();
     }
 /*
     XYState::~XYState()
@@ -25,17 +27,12 @@ namespace xy
             std::for_each(locs.begin(), locs.end(), [](XYLocation* xy){ delete xy; });
     }
 */
-    void XYState::add_object(const EnvironmentObject& obj, const XYLocation& xy)
-    {
+    void XYState::add_object(const EnvironmentObject& obj, const XYLocation& xy) {
         check_for_object(obj);
-        //std::set<EnvironmentObject*>* theset = get_set(xy);
-        //theset->insert(&obj);
+        check_vector(xy).emplace_back(obj);
     }
 
-
-
-    void XYState::check_for_object(const EnvironmentObject& obj)
-    {
+    void XYState::check_for_object(const EnvironmentObject& obj) {
         for (auto& x : vec) {  
             if (its = x.second.begin(); its != x.second.end()) { 
                 if (*its == obj) { 
@@ -45,6 +42,31 @@ namespace xy
                 ++its;
             }
         }
+    }
+
+    std::vector<EnvironmentObject>& XYState::check_vector(const XYLocation& xy) {
+        if (has_xy(xy) != get_vector().end()) {
+            return itv->second;
+        }
+
+        if (!xy::XYState::vsize) create_vectors(); 
+    
+        vec.emplace_back(xy, vector_objects[--vsize]);
+        return has_xy(xy)->second;
+    }
+
+    Vector::iterator XYState::has_xy(const XYLocation& loc) {
+        itv = std::find_if(
+                XYState::get_vector().begin(),
+                XYState::get_vector().end(),
+                [loc](std::pair<XYLocation, std::vector<EnvironmentObject>>& mypair) {
+                    return (mypair.first == loc);
+                });
+        return itv;
+    }
+
+    Vector& XYState::get_vector() {
+        return vec;
     }
 
 
@@ -61,22 +83,7 @@ namespace xy
         }
     }
 
-    Vector::iterator XYState::has_xy(const XYLocation& loc)
-    {
-        itv = std::find_if(
-                XYState::get_vector().begin(),
-                XYState::get_vector().end(),
-                [loc](std::pair<XYLocation, std::set<EnvironmentObject*>>& mypair) {
-                    return (mypair.first == loc);
-                });
-        return itv;
-    }*/
-
-    //std::vector<std::pair<XYLocation, std::set<EnvironmentObject*>>>& XYState::get_vector()
-    std::vector<std::pair<XYLocation, std::vector<EnvironmentObject>>>& XYState::get_vector()
-    {
-        return vec;
-    }
+*/
 
 
 /*
@@ -120,6 +127,13 @@ namespace xy
     size_t XYState::vector_size()
     {
         return XYState::get_vector().size();
+    }
+
+    void XYState::create_vectors() {
+        vsize = 10; 
+        for (int i = 0; i < 10; ++i) { 
+           vector_objects.emplace_back(std::vector<EnvironmentObject>{}); 
+        }        
     }
 /*
     void XYState::perimeter(unsigned w, unsigned h)

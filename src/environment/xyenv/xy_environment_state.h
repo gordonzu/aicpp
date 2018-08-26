@@ -27,10 +27,10 @@ namespace xy {
         size_t vector_size();
         Vector& get_vector();
         void check_for_object(const EnvironmentObject& obj);
-/*
+        std::vector<EnvironmentObject>& check_vector(const XYLocation& loc);
         Vector::iterator has_xy(const XYLocation& loc);
-        std::set<EnvironmentObject*>* get_set(const XYLocation& loc);
-*/
+
+
 /*      XYLocation* get_object_location(EnvironmentObject& obj);
         ~XYState();
         void move_object(EnvironmentObject& obj, const XYLocation::Direction& dir);
@@ -39,10 +39,16 @@ namespace xy {
         void perimeter(unsigned w, unsigned h);
 */
     private:
+        void create_vectors();
+
+        static int vsize;
         Vector vec;
         Vector::iterator itv;
-        //std::set<EnvironmentObject*>::iterator its;
         std::vector<EnvironmentObject>::iterator its;
+        std::vector<EnvironmentObject> objects;
+        std::vector<std::vector<EnvironmentObject>> vector_objects;
+        
+        //std::set<EnvironmentObject*>::iterator its;
 /*
         std::unique_ptr<std::set<EnvironmentObject*>> set;
         std::vector<Wall*> walls;
