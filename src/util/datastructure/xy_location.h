@@ -14,6 +14,7 @@ public:
     XYLocation& operator=(const XYLocation& rhs);
     bool operator==(const XYLocation& rhs) const; 
     bool operator<(const XYLocation& rhs) const;
+    bool operator!=(const XYLocation& rhs) const;
 
     void print();
     enum class Direction: unsigned short{ NORTH, SOUTH, EAST, WEST };

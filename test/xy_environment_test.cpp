@@ -23,8 +23,8 @@ public:
 
     Agent agent;
     Wall wall;
-    XYLocation loc{3, 4};
-    XYEnvironment env{10, 12};
+    XYLocation loc{3,4};
+    XYEnvironment env{10,12};
 };
 
 TEST_F(XYEnvironmentTest, testMatrixConstruction) {
@@ -38,7 +38,7 @@ TEST_F(XYEnvironmentTest, testMatrixConstruction) {
 }
 
 TEST_F(XYEnvironmentTest, testObjectIsUnique) {
-    auto xy = XYLocation{5, 6};
+    auto xy = XYLocation{5,6};
     env.add_to(agent, xy);
     ASSERT_EQ(env.inner_vector_size(xy), size_t(1));
     ASSERT_EQ(env.inner_vector_size(loc), size_t(0));
@@ -48,8 +48,11 @@ TEST_F(XYEnvironmentTest, testObjectIsUnique) {
 
 TEST_F(XYEnvironmentTest, testGetCurrentLocation)
 {
-    auto xy = XYLocation{3, 4};
+    auto xy = XYLocation{3,4};
     ASSERT_EQ(env.get_location(agent), xy);
+
+    auto xy2 = XYLocation{12,5};
+    ASSERT_NE(env.get_location(agent), xy2);
 }
 /*
 TEST_F(XYEnvironmentTest, testAddObject2)

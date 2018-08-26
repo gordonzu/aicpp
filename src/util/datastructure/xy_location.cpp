@@ -2,41 +2,30 @@
 
 #include "util/datastructure/xy_location.h"
 
-XYLocation::XYLocation() 
-{
-}
+XYLocation::XYLocation() {}
 
-XYLocation::XYLocation(int x, int y): x_{x}, y_{y}
-{
-}
+XYLocation::XYLocation(int x, int y): x_{x}, y_{y} {}
 
-XYLocation::~XYLocation()
-{
-}
+XYLocation::~XYLocation() {}
 
-XYLocation::XYLocation(const XYLocation& other)
-{
+XYLocation::XYLocation(const XYLocation& other) {
     x_ = other.x_;
     y_ = other.y_;
 }
 
-void XYLocation::print() 
-{
+void XYLocation::print() {
     std::cout << "XYLocation: width= " << x_ << " height= " << y_ << std::endl;
 }
 
-int XYLocation::getx() const
-{
+int XYLocation::getx() const {
     return x_;
 }
 
-int XYLocation::gety() const
-{
+int XYLocation::gety() const {
     return y_;
 }
 
-XYLocation& XYLocation::operator=(const XYLocation& rhs)
-{
+XYLocation& XYLocation::operator=(const XYLocation& rhs) {
     if (&rhs != this) {
         x_ = rhs.x_;
         y_ = rhs.y_;
@@ -44,14 +33,16 @@ XYLocation& XYLocation::operator=(const XYLocation& rhs)
     return *this;
 }
 
-bool XYLocation::operator<(const XYLocation& rhs) const 
-{
+bool XYLocation::operator<(const XYLocation& rhs) const {
     return x_ < rhs.x_ || (!(rhs.x_ < x_) && y_ < rhs.y_);
 } 
 
-bool XYLocation::operator==(const XYLocation& rhs) const  
-{
+bool XYLocation::operator==(const XYLocation& rhs) const  {
         return ((x_ == rhs.x_) && (y_ == rhs.y_));
+}
+
+bool XYLocation::operator!=(const XYLocation& rhs) const  {
+        return ((x_ != rhs.x_) || (y_ != rhs.y_));
 }
 
 XYLocation* XYLocation::west()
