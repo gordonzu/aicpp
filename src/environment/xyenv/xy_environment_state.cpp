@@ -2,17 +2,14 @@
 
 #include "environment/xyenv/xy_environment_state.h"
 
-//namespace xy {
 int XYState::vsize = 0;
 
-XYState::XYState(unsigned w, unsigned h) {
+XYState::XYState(int w, int h) {
     create_vectors();
 
-    for (unsigned x = 1; x <= w; ++x) {
-        for (unsigned y = 1; y <= h; ++y) {
-            m.emplace_back(
-                XYLocation{static_cast<int>(x), static_cast<int>(y)},
-                std::vector<EnvironmentObject>());
+    for (int x = 1; x <= w; ++x) {
+        for (int y = 1; y <= h; ++y) {
+            m.emplace_back(XYLocation{x,y}, Vec());
         }
     }
 }
@@ -43,27 +40,27 @@ void XYState::check_object(const EnvironmentObject& obj) {
 }
 
 std::vector<EnvironmentObject>& XYState::check_vector(const XYLocation& xy) {
-    if (has_xy(xy) != get_vector().end()) {
+    if (has_xy(xy) != get_map().end()) {
         return itv->second;
     }
 
     if (!vsize) create_vectors(); 
 
-    m.emplace_back(xy, vector_objects[--vsize]);
+    m.emplace_back(xy, vector_cache[--vsize]);
     return has_xy(xy)->second;
 }
 
 Map::iterator XYState::has_xy(const XYLocation& loc) {
     itv = std::find_if(
-            XYState::get_vector().begin(),
-            XYState::get_vector().end(),
+            get_map().begin(),
+            get_map().end(),
             [loc](std::pair<XYLocation, std::vector<EnvironmentObject>>& mypair) {
                 return (mypair.first == loc);
             });
     return itv;
 }
 
-Map& XYState::get_vector() {
+Map& XYState::get_map() {
     return m;
 }
 
@@ -89,8 +86,7 @@ void XYState::move_object(const EnvironmentObject& obj, const XYLocation::Direct
     }
 }
 
-bool XYState::is_blocked(const XYLocation& xy)
-{
+bool XYState::is_blocked(const XYLocation& xy) {
     for (auto& eo : check_vector(xy)) {
         if (eo.is_wall()) {
             return true;
@@ -99,68 +95,83 @@ bool XYState::is_blocked(const XYLocation& xy)
     return false;
 }
 
-/*
-    std::set<EnvironmentObject*>* XYState::get_set(const XYLocation& xy)
-    {
-        if (has_xy(xy) != get_vector().end()) {
-            return &(itv->second);
-        }
-        else {
-            set = std::make_unique<std::set<EnvironmentObject*>>();
-            m.emplace_back(xy, *set);
-            return &((has_xy(xy))->second);
-        }
-    }
-
-*/
-
-
-/*
-
-*/
-size_t XYState::inner_vector_size(const XYLocation& xy)
-{
-    return has_xy(xy)->second.size();
+size_t XYState::map_size() {
+    return m.size();
 }
 
-size_t XYState::vector_size()
-{
-    return XYState::get_vector().size();
+size_t XYState::inner_vector_size(const XYLocation& xy) {
+    return has_xy(xy)->second.size();
 }
 
 void XYState::create_vectors() {
     vsize = 10; 
     for (int i = 0; i < 10; ++i) { 
-       vector_objects.emplace_back(std::vector<EnvironmentObject>{}); 
+       vector_cache.emplace_back(std::vector<EnvironmentObject>{}); 
     }        
 }
-/*
-    void XYState::perimeter(unsigned w, unsigned h)
-    {
-        for (unsigned i =0; i < w; ++i) {
-            walls.emplace_back(new Wall());
-            locs.emplace_back(new XYLocation(i, 0));
 
-            walls.emplace_back(new Wall());
-            locs.emplace_back(new XYLocation(i, h - 1));
-        }
+void XYState::perimeter(int x, int y) {
+    std::vector<Wall> walls;
+    std::vector<XYLocation> locs;    
 
-        for (unsigned i =0; i < h; ++i) {
-            walls.emplace_back(new Wall());
-            locs.emplace_back(new XYLocation(0, i));
+    for (int i =1; i <= x; ++i) {
+        walls.emplace_back(Wall());
+        locs.emplace_back(XYLocation(i, 1));
+        // bottom bound
 
-            walls.emplace_back(new Wall());
-            locs.emplace_back(new XYLocation(w - 1, i));
-        }
+        walls.emplace_back(Wall());
+        locs.emplace_back(XYLocation(i, x));
+        // top bound
+    }
 
-        std::vector<Wall*>::iterator itw = walls.begin();
-        std::vector<XYLocation*>::iterator itx = locs.begin();
+    for (int i =1; i <= y; ++i) {
+        walls.emplace_back(Wall());
+        locs.emplace_back(XYLocation(x, i));
+        // right bound
 
-        while (itw != walls.end()) {
-            add_object(**itw, **itx);
-            ++itw;
-            ++itx;
-        }
-    }*/
-//}
+        walls.emplace_back(Wall());
+        locs.emplace_back(XYLocation(1, i));
+        // left bound
+    }
+
+    auto itw = walls.begin();
+    auto itx = locs.begin();
+
+    while (itw != walls.end()) {
+        add_object(*itw, *itx);
+        ++itw;
+        ++itx;
+    }
+}
+
+
+/*void XYState::perimeter(unsigned w, unsigned h)
+{
+    for (unsigned i =0; i < w; ++i) {
+        walls.emplace_back(new Wall());
+        locs.emplace_back(new XYLocation(i, 0));
+
+        walls.emplace_back(new Wall());
+        locs.emplace_back(new XYLocation(i, h - 1));
+    }
+
+    for (unsigned i =0; i < h; ++i) {
+        walls.emplace_back(new Wall());
+        locs.emplace_back(new XYLocation(0, i));
+
+        walls.emplace_back(new Wall());
+        locs.emplace_back(new XYLocation(w - 1, i));
+    }
+
+    std::vector<Wall*>::iterator itw = walls.begin();
+    std::vector<XYLocation*>::iterator itx = locs.begin();
+
+    while (itw != walls.end()) {
+        add_object(**itw, **itx);
+        ++itw;
+        ++itx;
+    }
+}
+*/
+
 

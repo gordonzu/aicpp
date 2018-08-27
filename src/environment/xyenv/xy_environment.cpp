@@ -7,7 +7,7 @@
 #include <algorithm>
 #include "environment/xyenv/xy_environment.h"
 
-XYEnvironment::XYEnvironment(unsigned w, unsigned h) : width{w}, height{h}, state{w,h} {
+XYEnvironment::XYEnvironment(int w, int h) : width(w), height(h), state(w,h) {
     assert (width > 0);
     assert (height > 0);
 }
@@ -22,8 +22,30 @@ XYEnvironment& XYEnvironment::operator=(const XYEnvironment &rhs) {
     return *this;
 }
 
-size_t XYEnvironment::get_vector_size() {
-    return state.vector_size();
+Vec XYEnvironment::get_objects_near(const EnvironmentObject& obj, unsigned rad) {
+    Vec tmp;
+    auto xy = get_location(obj);
+
+    for (auto& v : get_map()) {
+        if (in_radius(rad, xy, v.first)) {
+            tmp.insert(tmp.end(), v.second.begin(), v.second.end());
+        }
+    }
+
+    auto it = std::find(tmp.begin(), tmp.end(), obj);
+    if (it != tmp.end()) tmp.erase(it);
+    return tmp;
+}
+
+bool XYEnvironment::in_radius(unsigned rad, const XYLocation& loca, const XYLocation& locb) {
+    int xdiff = loca.getx() - locb.getx();
+    int ydiff = loca.gety() - locb.gety();
+
+    return std::sqrt((xdiff * xdiff) + (ydiff * ydiff)) <= rad;
+}
+
+size_t XYEnvironment::get_map_size() {
+    return state.map_size();
 }
 
 size_t XYEnvironment::inner_vector_size(const XYLocation& xy) {
@@ -47,6 +69,15 @@ bool XYEnvironment::is_blocked(const XYLocation &xy) {
     return state.is_blocked(xy);
 }
 
+Map& XYEnvironment::get_map() {
+    return state.get_map();
+}
+
+void XYEnvironment::make_perimeter(int x, int y) {
+    state.perimeter(x, y);
+}
+
+
 /*
 
 bool XYEnvironment::is_blocked(const XYLocation &&xy)
@@ -54,41 +85,7 @@ bool XYEnvironment::is_blocked(const XYLocation &&xy)
     return is_blocked(xy);
 }
 
-std::set<EnvironmentObject*>& XYEnvironment::get_objects_near(EnvironmentObject& obj, unsigned rad)
-{
-    near_set = std::make_unique<std::set<EnvironmentObject*>>();
-    XYLocation* xy = get_location(obj);
 
-    for (auto& v : get_vector()) {
-        if (in_radius(rad, *xy, v.first)) {
-            near_set->insert(v.second.begin(), v.second.end());
-        }
-    }
-
-    auto search = near_set->find(&obj);
-    if (search != near_set->end())
-        near_set->erase(search);
-
-    return *near_set;
-}
-
-bool XYEnvironment::in_radius(unsigned rad, const XYLocation& loca, const XYLocation& locb)
-{
-    int xdiff = loca.getx() - locb.getx();
-    int ydiff = loca.gety() - locb.gety();
-
-    return std::sqrt((xdiff * xdiff) + (ydiff * ydiff)) <= rad;
-}
-
-void XYEnvironment::make_perimeter()
-{
-    state.perimeter(width, height);
-}
-
-Vector& XYEnvironment::get_vector()
-{
-    return state.get_vector();
-}
 */
 
 

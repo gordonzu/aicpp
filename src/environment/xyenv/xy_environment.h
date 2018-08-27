@@ -11,32 +11,30 @@
 class XYEnvironment: public StaticEnvironment {
 public:
     XYEnvironment() = delete;
-    XYEnvironment(unsigned w, unsigned h);
+    XYEnvironment(int w, int h);
     virtual ~XYEnvironment();
     XYEnvironment& operator=(const XYEnvironment& rhs);
+
     XYLocation get_location(const EnvironmentObject& eo);
     void move_object(const EnvironmentObject& eo, const XYLocation::Direction& dir);
     bool is_blocked(const XYLocation& xy);
-
-/*
-    bool is_blocked(const XYLocation&& xy);
+    Vec get_objects_near(const EnvironmentObject& obj, unsigned);
     bool in_radius(unsigned rad, const XYLocation& loca, const XYLocation& locb);
-*/
-
+    void make_perimeter(int x, int y);
+    Map& get_map();
     void add_to(const EnvironmentObject& eo, const XYLocation& loc);
-    size_t get_vector_size();
+    size_t get_map_size();
     size_t inner_vector_size(const XYLocation& xy);
-/*
-    void make_perimeter();
-    std::set<EnvironmentObject*>& get_objects_near(EnvironmentObject& obj, unsigned);
-    Vector& get_vector();
-*/
+
 private:
     unsigned width;
     unsigned height;
     XYState state;
-    std::vector<EnvironmentObject> near_set;
 };
 #endif
+
+/*
+    bool is_blocked(const XYLocation&& xy);
+*/
 
 

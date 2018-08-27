@@ -28,7 +28,7 @@ public:
 };
 
 TEST_F(XYEnvironmentTest, testMatrixConstruction) {
-    ASSERT_EQ(env.get_vector_size(), size_t(120));
+    ASSERT_EQ(env.get_map_size(), size_t(120));
     ASSERT_EQ(env.inner_vector_size(loc), size_t(1));
 
     env.add_to(wall, loc);
@@ -142,24 +142,23 @@ TEST_F(XYEnvironmentTest, testMoveWithBlockingWalls) {
     env.move_object(agent, XYLocation::Direction::EAST);  // SHOULD move
     ASSERT_EQ(env.get_location(agent), endloc);
 }
-/*
-TEST_F(XYEnvironmentTest, testGetSet)
-{
-    auto loc = XYLocation{5, 7};
+
+TEST_F(XYEnvironmentTest, testGetSet) {
+    XYLocation loc{5,7};
     env.add_to(agent, loc);
-    ASSERT_EQ(env.get_set_size(loc), size_t(1));
+    ASSERT_EQ(env.inner_vector_size(loc), size_t(1));
+
     Agent b;
     env.add_to(b, loc);
-    ASSERT_EQ(env.get_set_size(loc), size_t(2));
+    ASSERT_EQ(env.inner_vector_size(loc), size_t(2));
 }
 
-TEST_F(XYEnvironmentTest, testGetObjectsNear)
-{
-    auto loc = XYLocation{5, 5};
-    auto loc2 = XYLocation{7, 4};
-    auto loc3 = XYLocation{5, 7};
-    auto loc4 = XYLocation{3, 10};
-    auto loc5 = XYLocation{3, 11};
+TEST_F(XYEnvironmentTest, testGetObjectsNear) {
+    XYLocation loc{5,5};
+    XYLocation loc2{7,4};
+    XYLocation loc3{5,7};
+    XYLocation loc4{3,10};
+    XYLocation loc5{3,11};
 
     env.add_to(agent, loc);
 
@@ -171,54 +170,54 @@ TEST_F(XYEnvironmentTest, testGetObjectsNear)
     env.add_to(c, loc3);
     env.add_to(w, loc4);
 
-    std::set<EnvironmentObject*> agentset = env.get_objects_near(agent, 3);
-    ASSERT_EQ(agentset.size(), size_t(2));
+    std::vector<EnvironmentObject> avec = env.get_objects_near(agent, 3);
+    ASSERT_EQ(avec.size(), size_t(2));
 
-    std::set<EnvironmentObject*> bset = env.get_objects_near(b, 3);
-    ASSERT_EQ(bset.size(), size_t(1));
+    std::vector<EnvironmentObject> bvec = env.get_objects_near(b, 3);
+    ASSERT_EQ(bvec.size(), size_t(1));
 
     env.move_object(b, XYLocation::Direction::SOUTH);
 
-    bset = env.get_objects_near(b, 3);
-    ASSERT_EQ(bset.size(), size_t(2));
+    bvec = env.get_objects_near(b, 3);
+    ASSERT_EQ(bvec.size(), size_t(2));
 
     env.add_to(c, loc5);
-    std::set<EnvironmentObject*> cset = env.get_objects_near(c, 4);
-    ASSERT_EQ(cset.size(), size_t(1));
+    std::vector<EnvironmentObject> cvec = env.get_objects_near(c, 4);
+    ASSERT_EQ(cvec.size(), size_t(1));
 }
 
-TEST_F(XYEnvironmentTest, testOutOfRangeXYLocations)
-{
-    auto loc = XYLocation{11, 13};
-    auto loc2 = XYLocation{25, 30};
-    auto loc3 = XYLocation{0, 0};
+TEST_F(XYEnvironmentTest, testOutOfRangeXYLocations) {
+    XYLocation loc{11,13};
+    XYLocation loc2{25,30};
+    XYLocation loc3{0,0};
 
     Agent a;
     env.add_to(a, loc);
-    ASSERT_EQ(env.get_set_size(loc), size_t(1));
+    ASSERT_EQ(env.inner_vector_size(loc), size_t(1));
 
     Agent a1;
     env.add_to(a1, loc2);
-    ASSERT_EQ(env.get_set_size(loc2), size_t(1));
+    ASSERT_EQ(env.inner_vector_size(loc2), size_t(1));
 
     Agent a2;
     env.add_to(a2, loc3);
-    ASSERT_EQ(env.get_set_size(loc3), size_t(1));
+    ASSERT_EQ(env.inner_vector_size(loc3), size_t(1));
 }
 
-TEST_F(XYEnvironmentTest, testMakePerimeter)
-{
-    env.make_perimeter();
-    ASSERT_TRUE(env.is_blocked(XYLocation{0, 0}));
-    ASSERT_TRUE(env.is_blocked(XYLocation{0, 6}));
-    ASSERT_TRUE(env.is_blocked(XYLocation{0, 11}));
-    ASSERT_TRUE(env.is_blocked(XYLocation{6, 0}));
-    ASSERT_TRUE(env.is_blocked(XYLocation{9, 0}));
-    ASSERT_TRUE(env.is_blocked(XYLocation{9, 6}));
-    ASSERT_TRUE(env.is_blocked(XYLocation{9, 11}));
-    ASSERT_TRUE(env.is_blocked(XYLocation{6, 11}));
+TEST_F(XYEnvironmentTest, testMakePerimeter) {
+    env.make_perimeter(5, 6); 
+
+    ASSERT_TRUE(env.is_blocked(XYLocation{1, 4}));
+    ASSERT_FALSE(env.is_blocked(XYLocation{1, 7}));
+
+    ASSERT_TRUE(env.is_blocked(XYLocation{4, 1}));
+    ASSERT_FALSE(env.is_blocked(XYLocation{4, 8}));
+
+    ASSERT_TRUE(env.is_blocked(XYLocation{5, 3}));
+    ASSERT_TRUE(env.is_blocked(XYLocation{5, 4}));
+    ASSERT_FALSE(env.is_blocked(XYLocation{5, 7}));
 }
-*/
+
 
 
 

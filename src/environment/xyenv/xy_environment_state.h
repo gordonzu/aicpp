@@ -7,30 +7,30 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include "environment/wall.h"
 #include "environment/environment_object.h"
 #include "util/datastructure/xy_location.h"
 
+using Vec = std::vector<EnvironmentObject>;
 using Map = std::vector<std::pair<XYLocation, std::vector<EnvironmentObject>>>;
 
 class XYState {
 
 public:
-    XYState(unsigned w, unsigned h);
+    XYState(int w, int h);
     ~XYState();
     void add_object(const EnvironmentObject& obj, const XYLocation& xy);
-    size_t vector_size();
-    Map& get_vector();
+    size_t map_size();
+    Map& get_map();
     size_t inner_vector_size(const XYLocation& xy);
+    Vec get_inner_vector(const XYLocation&);
     XYLocation get_object_location(const EnvironmentObject& obj);
     void move_object(const EnvironmentObject& obj, const XYLocation::Direction& dir);
     bool is_blocked(const XYLocation& xy);
+    void perimeter(int x, int y);
 
-/*      
-        ~XYState();
-        void perimeter(unsigned w, unsigned h);
-*/
 private:
-    std::vector<EnvironmentObject>& check_vector(const XYLocation& loc);
+    Vec& check_vector(const XYLocation& loc);
     Map::iterator has_xy(const XYLocation& loc);
     void check_object(const EnvironmentObject& obj);
     void create_vectors();
@@ -39,14 +39,11 @@ private:
     XYLocation nullxy{0,0};
     Map m;
     Map::iterator itv;
-    std::vector<EnvironmentObject>::iterator its;
-    std::vector<EnvironmentObject> objects;
-    std::vector<std::vector<EnvironmentObject>> vector_objects;
-    
-        //std::set<EnvironmentObject*>::iterator its;
-/*
-        std::unique_ptr<std::set<EnvironmentObject*>> set;
-        std::vector<Wall*> walls;
-        std::vector<XYLocation*> locs;*/
-    };
+    Vec::iterator its;
+    std::vector<Vec> vector_cache;
+    std::vector<Wall*> walls;
+    std::vector<XYLocation*> locs;    
+
+
+};
 #endif //XYSTATE_H
