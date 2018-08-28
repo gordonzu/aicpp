@@ -1,35 +1,27 @@
+// gorodon zuehlke 8/27/18
+
 #include "wall.h"
 
-Wall::Wall() : hashval{hash_it()} {}
+Wall::Wall() {
+    hashval = hash_it();
+}
 
-bool Wall::operator==(const Wall& x) const {
+bool Wall::is_wall() const {
+    return iswall;
+}
+
+bool Wall::operator==(const Wall& x) {
     return hashval == x.hashval;
 }
 
-void Wall::add() {
-    StaticEnvironment::add_environment_object(*this);    
-}
-
-const char* Wall::talk() {
-    return "Wall..."; 
+std::ostream& operator<<(std::ostream& out, const Wall& x) {
+    out << "wall:" << x.hashval << " isWall=" << std::boolalpha << x.iswall;
+    return out;
 }
 
 size_t Wall::hash_it() {
-    std::string name("wall");
-
-    for (unsigned i = 0; i < name.length(); ++i) {
-        hashval = (hashval << 6) ^ (hashval >> 26) ^ name[i]; 
-    }
+    hashval = reinterpret_cast<uint64_t>(this);
     return hashval;
-}
-
-bool Wall::is_wall() {
-    return flag;
-}
-
-std::ostream& operator<<(std::ostream& out, const Wall& x) {
-    out << "wall:" << x.hashval;
-    return out;
 }
 
 

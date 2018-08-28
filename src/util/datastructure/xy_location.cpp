@@ -1,4 +1,4 @@
-// XYLocation.cpp
+// gordon zuehlke on 8/26/18
 
 #include "util/datastructure/xy_location.h"
 
@@ -13,8 +13,13 @@ XYLocation::XYLocation(const XYLocation& other) {
     y_ = other.y_;
 }
 
+XYLocation::XYLocation(XYLocation& other) {
+    x_ = other.x_;
+    y_ = other.y_;
+}
+
 void XYLocation::print() {
-    std::cout << "XYLocation: width= " << x_ << " height= " << y_ << std::endl;
+    std::cout << "{" << x_ << ", " << y_ << "}" <<  std::endl;
 }
 
 int XYLocation::getx() const {
@@ -45,57 +50,51 @@ bool XYLocation::operator!=(const XYLocation& rhs) const  {
         return ((x_ != rhs.x_) || (y_ != rhs.y_));
 }
 
-XYLocation XYLocation::west()
-{
+std::ostream& operator<<(std::ostream& out, const XYLocation& xy) {
+    out << "{" << xy.x_ << ", " << xy.y_ << "}";
+    return out;
+}
+
+XYLocation XYLocation::west() {
     XYLocation tmpxy{x_ - 1, y_};
     return tmpxy;
 }
 
-XYLocation XYLocation::east()
-{
+XYLocation XYLocation::east() {
     XYLocation tmpxy{x_ + 1, y_};
     return tmpxy;
 }
 
-XYLocation XYLocation::north()
-{
+XYLocation XYLocation::north() {
     XYLocation tmpxy{x_, y_ -1};
     return tmpxy;
 }
 
-XYLocation XYLocation::south()
-{
+XYLocation XYLocation::south() {
     XYLocation tmpxy{x_, y_ + 1};
     return tmpxy;
 }
 
-XYLocation XYLocation::right()
-{
+XYLocation XYLocation::right() {
     return east();
 }
 
-XYLocation XYLocation::left()
-{
+XYLocation XYLocation::left() {
     return west();
 }
 
-XYLocation XYLocation::up()
-{
+XYLocation XYLocation::up() {
     return north();
 }
 
-XYLocation XYLocation::down()
-{
+XYLocation XYLocation::down() {
     return south();
 }
 
-XYLocation XYLocation::location_at(const Direction& direction)
-{
+XYLocation XYLocation::location_at(const Direction& direction) {
     XYLocation xy;
-    try
-    {
-        switch (direction) 
-        {
+    try {
+        switch (direction) {
             case     Direction::NORTH:
                      xy = north();
                      break;
@@ -111,8 +110,7 @@ XYLocation XYLocation::location_at(const Direction& direction)
             default: throw std::runtime_error("Unknown direction...");
         } 
     }
-    catch(std::exception const& e)
-    {
+    catch(std::exception const& e) {
         std::cerr << "Exception: " << e.what() << "\n";
     }
     return xy;

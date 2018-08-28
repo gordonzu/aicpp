@@ -1,4 +1,4 @@
-// Created by gordonzu on 3/23/18.
+// gordonzu on 8/27/18.
 
 #include "environment/xyenv/xy_environment_state.h"
 
@@ -14,14 +14,6 @@ XYState::XYState(int w, int h) {
     }
 }
 
-XYState::~XYState() {/*
-    if (walls.size())
-        std::for_each(walls.begin(), walls.end(), [](Wall* w){ delete w; });
-
-    if (locs.size())
-        std::for_each(locs.begin(), locs.end(), [](XYLocation* xy){ delete xy; });*/
-}
-
 void XYState::add_object(const EnvironmentObject& obj, const XYLocation& xy) {
     check_object(obj);
     check_vector(xy).emplace_back(obj);
@@ -29,7 +21,7 @@ void XYState::add_object(const EnvironmentObject& obj, const XYLocation& xy) {
 
 void XYState::check_object(const EnvironmentObject& obj) {
     for (auto& x : m) {  
-        if (its = x.second.begin(); its != x.second.end()) { 
+        if (its = x.second.begin(); its != x.second.end()) {
             if (*its == obj) {
                 x.second.erase(its);
                 break;
@@ -144,34 +136,14 @@ void XYState::perimeter(int x, int y) {
     }
 }
 
+/*std::string XYState::print_inner_vector(const XYLocation& xy) const {
+    return ut::print_eovec(check_vector(xy));
+}*/
 
-/*void XYState::perimeter(unsigned w, unsigned h)
-{
-    for (unsigned i =0; i < w; ++i) {
-        walls.emplace_back(new Wall());
-        locs.emplace_back(new XYLocation(i, 0));
 
-        walls.emplace_back(new Wall());
-        locs.emplace_back(new XYLocation(i, h - 1));
-    }
 
-    for (unsigned i =0; i < h; ++i) {
-        walls.emplace_back(new Wall());
-        locs.emplace_back(new XYLocation(0, i));
 
-        walls.emplace_back(new Wall());
-        locs.emplace_back(new XYLocation(w - 1, i));
-    }
 
-    std::vector<Wall*>::iterator itw = walls.begin();
-    std::vector<XYLocation*>::iterator itx = locs.begin();
 
-    while (itw != walls.end()) {
-        add_object(**itw, **itx);
-        ++itw;
-        ++itx;
-    }
-}
-*/
 
 

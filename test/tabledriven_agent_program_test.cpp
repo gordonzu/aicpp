@@ -52,11 +52,6 @@ private:
     }
 };
 
-
-TEST_F(TableDrivenAgentProgramTest, testAgentTalks) {
-    ASSERT_STREQ(agent.talk(), "Agent...");
-}
-
 TEST_F(TableDrivenAgentProgramTest, testNullPropram) {
     Agent a;
     ASSERT_FALSE(a.set_program(nullptr));

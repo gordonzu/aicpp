@@ -1,4 +1,4 @@
-// xy_environment.cpp by gordonzu 8/26/18
+// gordonzu on 8/26/18
 
 #include <iostream>
 #include <cmath>
@@ -11,8 +11,6 @@ XYEnvironment::XYEnvironment(int w, int h) : width(w), height(h), state(w,h) {
     assert (width > 0);
     assert (height > 0);
 }
-
-XYEnvironment::~XYEnvironment() { }
 
 XYEnvironment& XYEnvironment::operator=(const XYEnvironment &rhs) {
     if (&rhs != this) {
@@ -54,7 +52,8 @@ size_t XYEnvironment::inner_vector_size(const XYLocation& xy) {
 
 void XYEnvironment::add_to(const EnvironmentObject& eo, const XYLocation& loc) {
     state.add_object(eo, loc);
-    StaticEnvironment::add_object(eo);
+    if (!eo.is_wall()) StaticEnvironment::add_agent(eo);
+    StaticEnvironment::add_environment_object(eo);
 }
 
 XYLocation XYEnvironment::get_location(const EnvironmentObject& eo) {
@@ -77,18 +76,9 @@ void XYEnvironment::make_perimeter(int x, int y) {
     state.perimeter(x, y);
 }
 
-
-/*
-
-bool XYEnvironment::is_blocked(const XYLocation &&xy)
-{
-    return is_blocked(xy);
-}
-
-
-*/
-
-
+/*std::string XYEnvironment::print_inner_vector(const XYLocation& xy) const {
+    return state.print_inner_vector(xy);
+}*/
 
 
 

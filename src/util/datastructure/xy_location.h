@@ -1,3 +1,5 @@
+// gordon zuehlke on 8/26/18
+
 #ifndef XYLOCATION_H 
 #define XYLOCATION_H
 
@@ -10,11 +12,13 @@ public:
     XYLocation(int x, int y);
     ~XYLocation();
     XYLocation(const XYLocation& other);
+    XYLocation(XYLocation& other);
 
     XYLocation& operator=(const XYLocation& rhs);
     bool operator==(const XYLocation& rhs) const; 
     bool operator<(const XYLocation& rhs) const;
     bool operator!=(const XYLocation& rhs) const;
+    friend std::ostream& operator<<(std::ostream& out, const XYLocation& xy);
 
     void print();
     enum class Direction: unsigned short{ NORTH, SOUTH, EAST, WEST };
@@ -33,7 +37,6 @@ public:
     XYLocation location_at(const Direction& direction);
 
 private:
-    //XYLocation tmpxy;
     int x_;
     int y_;
 };

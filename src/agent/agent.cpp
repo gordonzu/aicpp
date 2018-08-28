@@ -1,12 +1,18 @@
+// gordon zuehlke on 8/27/18
+
 #include "agent.h"
 #include "environment/environment.h"
 
-Agent::Agent(): ap{nullptr}, hashval{hash_it()} {} 
+Agent::Agent(): ap{nullptr} {
+    hashval = hash_it();
+} 
 
-Agent::Agent(AgentProgram* program): ap{program}, hashval{hash_it()} {}
+Agent::Agent(AgentProgram* program): ap{program} {
+    hashval = hash_it();
+}
 
-bool Agent::operator==(const Agent& x) const {
-    return hashval == x.hashval;
+Agent::~Agent() {
+    if (ap) delete ap;
 }
 
 bool Agent::set_program(AgentProgram* program) {
@@ -26,28 +32,21 @@ Action Agent::execute(const Percept& per) {
     return Action{};
 }
 
-const char* Agent::talk() { return "Agent..."; }
+bool Agent::is_wall() const {
+    return iswall;
+}
 
-void Agent::add() {
-    StaticEnvironment::add_environment_object(*this);
-    StaticEnvironment::add_agent(*this);
+bool Agent::operator==(const Agent& x) const {
+    return hashval == x.hashval; 
 }
 
 size_t Agent::hash_it() {
-    std::string name("agent");
-
-    for (unsigned i = 0; i < name.length(); ++i) {
-        hashval = (hashval << 6) ^ (hashval >> 26) ^ name[i]; 
-    }
+    hashval = reinterpret_cast<uint64_t>(this);
     return hashval;
 }
 
-bool Agent::is_wall() {
-    return flag;
-}
-
 std::ostream& operator<<(std::ostream& out, const Agent& x) {
-    out << "agent:" << x.hashval;
+    out << "agent:" << x.hashval << " isWall=" << std::boolalpha << x.iswall;
     return out;
 }
 

@@ -23,12 +23,10 @@ set(
     src/environment/xyenv/xy_environment.cpp
     src/environment/xyenv/xy_environment_state.cpp
     src/util/datastructure/xy_location.cpp
-    #src/agent/agent_programs/agent_program.cpp
+    src/agent/agent_programs/agent_program.cpp
     src/agent/dynamic_object.cpp
     src/agent/action.cpp
-    ##################################################
-    # tests 
-    ##################################################
+
     #test/percept_test.cpp
 	#test/base_object_test.cpp
     #test/table_test.cpp
@@ -50,6 +48,6 @@ add_custom_command(TARGET aicpp
 add_custom_command(TARGET aicpp
                    POST_BUILD
 #                  COMMAND valgrind --tool=memcheck --track-origins=yes --leak-check=full --show-leak-kinds=all ./aicpp)
-#                  COMMAND valgrind --tool=memcheck --leak-check=yes ./aicpp)
-                   COMMAND ./aicpp)
+                  COMMAND valgrind --tool=memcheck --leak-check=yes ./aicpp)
+#                   COMMAND ./aicpp)
 

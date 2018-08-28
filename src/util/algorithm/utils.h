@@ -8,7 +8,9 @@
 #include <algorithm>
 #include <memory>
 #include "object.h"
+#include "environment/environment_object.h"
 
+using eovector_t = std::vector<EnvironmentObject>;
 using vector_t = std::vector<Object>;
 using map_t = std::map<Object, Object>;
 using table_t = std::map<Object, map_t>; 
@@ -31,6 +33,15 @@ namespace ut {
         std::string out;
         for (const auto& x: v) {
             out.append(print_string(x));
+            out.append(", ");
+        }
+        return out.substr(0, out.size()-2);
+    }
+
+    inline std::string print_eovec(const eovector_t& v) {
+        std::string out;
+        for (const auto& x: v) {
+            out.append(print_object(x));
             out.append(", ");
         }
         return out.substr(0, out.size()-2);

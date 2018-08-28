@@ -1,9 +1,11 @@
-// gordonzu on 4/15/18.
+// gordon zuehlke on 8/27/18.
 
 #ifndef ENVIRONMENT_OBJECT_H
 #define ENVIRONMENT_OBJECT_H
 
 #include <sstream>
+#include <memory>
+#include "util/datastructure/xy_location.h"
 
 using std::make_shared;
 using std::shared_ptr;
@@ -23,11 +25,7 @@ public:
     template<typename T> 
     EnvironmentObject(const T& obj) : object{make_shared<model<T>>(move(obj))} {}
                                      
-    void add_() {
-        object->add_();
-    }
-
-    bool is_wall() {
+    bool is_wall() const {
         return object->is_wall_();
     }
 
@@ -51,8 +49,7 @@ public:
 private:
 	struct concept {
     	virtual ~concept() {}
-        virtual void add_() = 0;
-        virtual bool is_wall_() = 0;
+        virtual bool is_wall_() const = 0;
         virtual std::string  print_object_() const = 0;
    	};
 
@@ -61,22 +58,18 @@ private:
     	model(const T& t) : object(t) {}
        	virtual ~model() {}
 
-        void add_() override {
-            object.add();
-        }
-
         std::string print_object_() const override {
             return print_string(object);    
         } 
 
-        bool is_wall_() override {
+        bool is_wall_() const override {
             return object.is_wall();
         }
 
     private:
     	T object;
     };
-    shared_ptr<concept> object;
+    shared_ptr<const concept> object;
 };
 
 #endif //AICPP_OBJECT_H

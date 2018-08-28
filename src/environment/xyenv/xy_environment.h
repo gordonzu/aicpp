@@ -1,4 +1,4 @@
-//
+// gordon zuehlke on 8/27/18
 
 #ifndef XY_ENVIRONMENT_H
 #define XY_ENVIRONMENT_H
@@ -12,7 +12,7 @@ class XYEnvironment: public StaticEnvironment {
 public:
     XYEnvironment() = delete;
     XYEnvironment(int w, int h);
-    virtual ~XYEnvironment();
+    virtual ~XYEnvironment() = default;
     XYEnvironment& operator=(const XYEnvironment& rhs);
 
     XYLocation get_location(const EnvironmentObject& eo);
@@ -25,6 +25,7 @@ public:
     void add_to(const EnvironmentObject& eo, const XYLocation& loc);
     size_t get_map_size();
     size_t inner_vector_size(const XYLocation& xy);
+    //std::string print_inner_vector(const XYLocation& xy) const;
 
 private:
     unsigned width;
@@ -32,9 +33,4 @@ private:
     XYState state;
 };
 #endif
-
-/*
-    bool is_blocked(const XYLocation&& xy);
-*/
-
 
