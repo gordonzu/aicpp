@@ -3,15 +3,14 @@
 #include <iostream>
 #include "environment/environment.h"
 
+Vec StaticEnvironment::objects{};
+Vec StaticEnvironment::agents{};
 
-std::vector<EnvironmentObject> StaticEnvironment::objects{};
-std::vector<EnvironmentObject> StaticEnvironment::agents{};
-
-std::vector<EnvironmentObject>& StaticEnvironment::get_agents() {
+Vec& StaticEnvironment::get_agents() {
     return agents;
 }
 
-std::vector<EnvironmentObject>& StaticEnvironment::get_objects() {
+Vec& StaticEnvironment::get_objects() {
     return objects;
 }
 

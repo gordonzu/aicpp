@@ -9,17 +9,19 @@
 #include "environment_object.h"
 #include "agent/agent.h"
 
+using Vec = std::vector<EnvironmentObject>;
+
 class StaticEnvironment {
 public:
     static void add_environment_object(EnvironmentObject eo);
     static void add_agent(EnvironmentObject eo);
 
-    static std::vector<EnvironmentObject>& get_objects();
-    static std::vector<EnvironmentObject>& get_agents();
+    static Vec& get_objects();
+    static Vec& get_agents();
 
 protected:
-    static std::vector<EnvironmentObject> objects;
-    static std::vector<EnvironmentObject> agents;
+    static Vec objects;
+    static Vec agents;
 };
 #endif
 

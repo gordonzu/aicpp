@@ -31,7 +31,7 @@ void XYState::check_object(const EnvironmentObject& obj) {
     }
 }
 
-std::vector<EnvironmentObject>& XYState::check_vector(const XYLocation& xy) {
+Vec& XYState::check_vector(const XYLocation& xy) {
     if (has_xy(xy) != get_map().end()) {
         return itv->second;
     }
@@ -45,7 +45,7 @@ Map::iterator XYState::has_xy(const XYLocation& loc) {
     itv = std::find_if(
             get_map().begin(),
             get_map().end(),
-            [loc](std::pair<XYLocation, std::vector<EnvironmentObject>>& mypair) {
+            [loc](std::pair<XYLocation, Vec>& mypair) {
                 return (mypair.first == loc);
             });
     return itv;
@@ -56,13 +56,13 @@ Map& XYState::get_map() {
 }
 
 XYLocation XYState::get_object_location(const EnvironmentObject& obj) {
-    for (itv = m.begin(); itv != m.end(); ++itv) {
-        if (std::find(itv->second.begin(), 
-                      itv->second.end(), obj) 
-                      != itv->second.end()) { 
-                      return itv->first;
+    for (auto& x : m) {
+        if (std::find(x.second.begin(), 
+                      x.second.end(), obj) 
+                      != x.second.end()) { 
+                      return x.first;
         }
-    }     
+    }
     return XYLocation{0,0};
 }
 
@@ -97,7 +97,7 @@ size_t XYState::inner_vector_size(const XYLocation& xy) {
 void XYState::create_vectors() {
     vsize = 10; 
     for (int i = 0; i < 10; ++i) { 
-       vector_cache.emplace_back(std::vector<EnvironmentObject>{}); 
+       vector_cache.emplace_back(Vec{}); 
     }        
 }
 
