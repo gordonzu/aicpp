@@ -33,9 +33,11 @@ void XYState::check_object(const EnvironmentObject& obj) {
 
 std::vector<EnvironmentObject>& XYState::check_vector(const XYLocation& xy) {
     if (has_xy(xy) != get_map().end()) {
+    //std::cout << "Found! " << std::endl;
+    //std::cout << "vec size: " << itv->second.size() << std::endl;
         return itv->second;
     }
-
+    //std::cout << "Not found! " << std::endl;
     if (!vsize) create_vectors(); 
 
     m.emplace_back(xy, vector_cache[--vsize]);
@@ -136,9 +138,13 @@ void XYState::perimeter(int x, int y) {
     }
 }
 
-/*std::string XYState::print_inner_vector(const XYLocation& xy) const {
-    return ut::print_eovec(check_vector(xy));
-}*/
+std::string XYState::print_inner_vector(const XYLocation& xy) {
+    //std::cout << "calling check_vector" << std::endl;
+    std::vector<EnvironmentObject> tmp = check_vector(xy);
+    std::cout << "vector size:" << tmp.size() << std::endl;
+    //std::string out = ut::print_eovec(tmp);
+    return "test";
+}
 
 
 

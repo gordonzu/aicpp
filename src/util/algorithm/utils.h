@@ -40,6 +40,7 @@ namespace ut {
 
     inline std::string print_eovec(const eovector_t& v) {
         std::string out;
+        std::cout << "Size:" << v.size() << std::endl;
         for (const auto& x: v) {
             out.append(print_object(x));
             out.append(", ");

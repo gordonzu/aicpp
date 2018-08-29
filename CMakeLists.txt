@@ -48,6 +48,6 @@ add_custom_command(TARGET aicpp
 add_custom_command(TARGET aicpp
                    POST_BUILD
 #                  COMMAND valgrind --tool=memcheck --track-origins=yes --leak-check=full --show-leak-kinds=all ./aicpp)
-                  COMMAND valgrind --tool=memcheck --leak-check=yes ./aicpp)
-#                   COMMAND ./aicpp)
+#                  COMMAND valgrind --tool=memcheck --leak-check=yes ./aicpp)
+                   COMMAND ./aicpp)
 

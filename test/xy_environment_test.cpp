@@ -204,17 +204,190 @@ TEST_F(XYEnvironmentTest, testOutOfRangeXYLocations) {
     env.add_to(a2, loc3);
     ASSERT_EQ(env.inner_vector_size(loc3), size_t(1));
 }
-/*
+
 TEST_F(XYEnvironmentTest, testMakePerimeter) {
-    env.make_perimeter(5, 6); 
-    Wall w1;
-    Agent a1;
+    env.make_perimeter(5);
 
-    std::cout <<  "printing vector for XYLocation{1,5} " << std::endl;
-    //std::cout << env.print_inner_vector(XYLocation{1,5});
+    ASSERT_TRUE(env.is_blocked(XYLocation{1,1}));
+    ASSERT_TRUE(env.is_blocked(XYLocation{1,2}));
+    ASSERT_TRUE(env.is_blocked(XYLocation{1,5}));
+    ASSERT_TRUE(env.is_blocked(XYLocation{2,1}));
+    ASSERT_TRUE(env.is_blocked(XYLocation{5,2}));
+    ASSERT_TRUE(env.is_blocked(XYLocation{5,5}));
+    ASSERT_TRUE(env.is_blocked(XYLocation{4,1}));
 
-    //ASSERT_TRUE(env.is_blocked(XYLocation{1, 5}));
-    //ASSERT_FALSE(env.is_blocked(XYLocation{1, 7}));
+    ASSERT_FALSE(env.is_blocked(XYLocation{7,5}));
+    ASSERT_FALSE(env.is_blocked(XYLocation{2,8}));
+    ASSERT_FALSE(env.is_blocked(XYLocation{4,4}));
+    ASSERT_FALSE(env.is_blocked(XYLocation{3,2}));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*    int i = 0;
+    for (auto& x : walls) {
+        env.add_to(*walls[i], locs[i]);
+        ++i;
+    }*/
+
+    //ASSERT_EQ(env.inner_vector_size(locs[0]), size_t(1));
+    //ASSERT_EQ(env.is_blocked(locs[0]), true);
+
+    //env.add_to(*walls[0], locs[0]);
+    //ASSERT_EQ(env.inner_vector_size(locs[4]), size_t(1));
+    //ASSERT_EQ(env.is_blocked(locs[4]), true);
+
+
+/*void perimeter(int x, XYEnvironment env) {
+    for (int i =1; i <= x; ++i) {
+        walls.emplace_back(std::make_unique<Wall>());
+        //std::cout << "XYLocation{" << 1 << "," << i << "}" << std::endl;
+        locs.emplace_back(XYLocation{1,i});
+    }
+
+    for (int i =1; i <= x; ++i) {
+        walls.emplace_back(std::make_unique<Wall>());
+        //std::cout << "XYLocation{" << 5 << "," << i << "}" << std::endl;
+        locs.emplace_back(XYLocation{5,i});
+    }
+
+    for (int i =1; i <= x; ++i) {
+        walls.emplace_back(std::make_unique<Wall>());
+        //std::cout << "XYLocation{" << i << "," << 1 << "}" << std::endl;
+        locs.emplace_back(XYLocation{i,1});
+    }
+
+    for (int i =1; i <= x; ++i) {
+        walls.emplace_back(std::make_unique<Wall>());
+        //std::cout << "XYLocation{" << i << "," << 5 << "}" << std::endl;
+        locs.emplace_back(XYLocation{i,5});
+    }
+
+    for (auto& i : locs) {
+        std::cout << i << std::endl;
+    }
+
+    //auto itw = walls.begin();
+    //auto itx = locs.begin();
+
+    for (auto& x : walls) {
+        std::cout << *x << " " << *itx << std::endl;
+        ++itx;
+    }
+
+    //while (itw != walls.end()) {
+        //std::cout << **itw << " " << *itx << std::endl;
+        //env.add_to(**itw, *itx);
+        //++itw;
+        //++itx;
+    //}
+    
+    walls.emplace_back(std::make_unique<Wall>());
+    locs.emplace_back(XYLocation{1,5});
+
+    auto itw = walls.begin();
+    auto itx = locs.begin();
+    //env.add_to(**itw, *itx);
+    env.add_to(the_wall, g);
+}*/
+
+/*TEST_F(XYEnvironmentTest, testMakePerimeter) {
+    perimeter(5, env);
+
+    XYLocation xy{1,5};
+    //ASSERT_TRUE(env.is_blocked(xy));
+
+    std::cout << env.get_map().size() << " rows in map." << std::endl;
+    auto i = env.has_xy(xy);
+    std::cout << i->first << std::endl; 
+    std::cout << i->second.size() << " rows." << std::endl;
+
+    auto i = env.get_map().begin();
+    if (i->first == xy) {
+        std::cout << i->first << std::endl;
+    } else {
+        ++i;
+    }
+ 
+   {
+        std::cout << i->first << std::endl;
+        for (auto& x : i->second) {
+            std::cout << x << std::endl;
+        }
+    } else {
+        ++i;
+    }
+
+    auto i = env.get_map().begin();
+    while ( i != env.get_map().end()) {
+        std::cout << i->first << std::endl;
+        ++i;
+    }
+
+
+
+    ASSERT_FALSE(env.is_blocked(XYLocation{1, 7}));
+
+    ASSERT_TRUE(env.is_blocked(XYLocation{4, 1}));
+    ASSERT_FALSE(env.is_blocked(XYLocation{4, 8}));
+
+    ASSERT_TRUE(env.is_blocked(XYLocation{5, 3}));
+    ASSERT_TRUE(env.is_blocked(XYLocation{5, 4}));
+    ASSERT_FALSE(env.is_blocked(XYLocation{5, 7}));
+}*/
+
+/*TEST_F(XYEnvironmentTest, testMakePerimeter) {
+    for (int i =1; i <= 5; ++i) {
+        walls.emplace_back(std::make_unique<Wall>());
+        locs.emplace_back(XYLocation(1,i));
+    }
+
+    for (int i =1; i <= 5; ++i) {
+        walls.emplace_back(std::make_unique<Wall>());
+        locs.emplace_back(XYLocation(5,i));
+    }
+
+    for (int i =1; i <= 5; ++i) {
+        walls.emplace_back(std::make_unique<Wall>());
+        locs.emplace_back(XYLocation(i,1));
+    }
+    
+    for (int i =1; i <= 5; ++i) {
+        walls.emplace_back(std::make_unique<Wall>());
+        locs.emplace_back(XYLocation(i,5));
+    }
+
+    auto itw = walls.begin();
+    auto itx = locs.begin();
+
+    while (itw != walls.end()) {
+        env.add_to(**itw, *itx);
+        ++itw;
+        ++itx;
+    }
+
+    ASSERT_TRUE(env.is_blocked(XYLocation{1, 5}));
+    ASSERT_FALSE(env.is_blocked(XYLocation{1, 7}));
 
     ASSERT_TRUE(env.is_blocked(XYLocation{4, 1}));
     ASSERT_FALSE(env.is_blocked(XYLocation{4, 8}));
@@ -226,3 +399,146 @@ TEST_F(XYEnvironmentTest, testMakePerimeter) {
 
 
 
+
+
+
+
+
+/*    Wall w1, w2, w3, w4, w5, w6, w7, w8, w9, w10;
+    Wall w11, w12, w13, w14, w15, w16, w17, w18, w19, w20;
+    XYLocation l1{1,1};
+    XYLocation l2{1,2};
+    XYLocation l3{1,3};
+    XYLocation l4{1,4};
+    XYLocation l5{1,5};
+    XYLocation l6{5,1};
+    XYLocation l7{5,2};
+    XYLocation l8{5,3};
+    XYLocation l9{5,4};
+    XYLocation l10{5,5};
+
+    XYLocation l11{1,1};
+    XYLocation l12{2,1};
+    XYLocation l13{3,1};
+    XYLocation l14{4,1};
+    XYLocation l15{5,1};
+    XYLocation l16{1,5};
+    XYLocation l17{2,5};
+    XYLocation l18{3,5};
+    XYLocation l19{4,5};
+    XYLocation l20{5,5};
+
+    env.add_to(w1,l1);
+    env.add_to(w2,l2);
+    env.add_to(w3,l3);
+    env.add_to(w4,l4);
+    env.add_to(w5,l5);
+    env.add_to(w6,l6);
+    env.add_to(w7,l7);
+    env.add_to(w8,l8);
+    env.add_to(w9,l9);
+    env.add_to(w10,l10);
+    env.add_to(w11,l11);
+    env.add_to(w12,l12);
+    env.add_to(w13,l13);
+    env.add_to(w14,l14);
+    env.add_to(w15,l15);
+    env.add_to(w16,l16);
+    env.add_to(w17,l17);
+    env.add_to(w18,l18);
+    env.add_to(w19,l19);
+    env.add_to(w20,l20);*/
+
+/*    std::vector<Wall*> walls;
+    std::vector<XYLocation> locs;    
+
+    for (int i =1; i <= 5; ++i) {
+        walls.emplace_back(new Wall());
+        locs.emplace_back(XYLocation(1,i));
+    }
+
+    for (int i =1; i <= 5; ++i) {
+        walls.emplace_back(new Wall());
+        locs.emplace_back(XYLocation(5,i));
+    }
+
+    for (int i =1; i <= 5; ++i) {
+        walls.emplace_back(new Wall());
+        locs.emplace_back(XYLocation(i,1));
+    }
+    
+    for (int i =1; i <= 5; ++i) {
+        walls.emplace_back(new Wall());
+        locs.emplace_back(XYLocation(i,5));
+    }
+
+    auto itw = walls.begin();
+    auto itx = locs.begin();
+
+    while (itw != walls.end()) {
+        env.add_to(**itw, *itx);
+        ++itw;
+        ++itx;
+    }*/
+
+/*
+void perimeter() {
+
+        walls.emplace_back(Wall());
+        locs.emplace_back(XYLocation(i, x));
+        // top bound
+    }
+
+    for (int i =1; i <= y; ++i) {
+        walls.emplace_back(Wall());
+        locs.emplace_back(XYLocation(x, i));
+        // right bound
+
+        walls.emplace_back(Wall());
+        locs.emplace_back(XYLocation(1, i));
+        // left bound
+    }
+
+    auto itw = walls.begin();
+    auto itx = locs.begin();
+
+    while (itw != walls.end()) {
+        add_object(*itw, *itx);
+        ++itw;
+        ++itx;
+    }
+}
+
+    //XYEnvironment env{10, 12};
+    std::vector<Wall> walls;
+    std::vector<XYLocation> locs;    
+
+    for (int i =1; i <= x; ++i) {
+        walls.emplace_back(Wall());
+        locs.emplace_back(XYLocation(i, 1));
+        // bottom bound
+
+        walls.emplace_back(Wall());
+        locs.emplace_back(XYLocation(i, x));
+        // top bound
+    }
+
+    for (int i =1; i <= y; ++i) {
+        walls.emplace_back(Wall());
+        locs.emplace_back(XYLocation(x, i));
+        // right bound
+
+        walls.emplace_back(Wall());
+        locs.emplace_back(XYLocation(1, i));
+        // left bound
+    }
+
+    auto itw = walls.begin();
+    auto itx = locs.begin();
+
+    while (itw != walls.end()) {
+        env.add_to(*itw, *itx);
+        ++itw;
+        ++itx;
+    }
+*/
