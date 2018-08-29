@@ -24,7 +24,6 @@ public:
     void add_to(const EnvironmentObject& eo, const XYLocation& loc);
     size_t get_map_size();
     size_t inner_vector_size(const XYLocation& xy);
-    std::string print_inner_vector(const XYLocation& xy);
     Map::iterator has_xy(const XYLocation& x);
     void make_perimeter(int x);
 

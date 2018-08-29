@@ -28,7 +28,6 @@ public:
     void move_object(const EnvironmentObject& obj, const XYLocation::Direction& dir);
     bool is_blocked(const XYLocation& xy);
     void perimeter(int x, int y);
-    std::string print_inner_vector(const XYLocation& xy);    
     Map::iterator has_xy(const XYLocation& loc);
 
 private:

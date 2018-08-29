@@ -60,27 +60,22 @@ TEST_F(TableDrivenAgentProgramTest, testNullPropram) {
 }
 
 TEST_F(TableDrivenAgentProgramTest, testLiveProgram) {
-    
     Percept p{"key1", "value1"};
     auto x = agent.execute(p); 
     ASSERT_FALSE(x.is_no_op());
 }
 
-/*
-TEST_F(TableDrivenAgentProgramTest, testExistingSequences)
-{
+TEST_F(TableDrivenAgentProgramTest, testExistingSequences) {
     agent.set_program(program);
-    ASSERT_EQ(*(agent.execute(Percept{"key1", "value1"})), *ACTION_1);
-    ASSERT_EQ(*(agent.execute(Percept{"key1", "value2"})), *ACTION_2);
-    ASSERT_EQ(*(agent.execute(Percept{"key1", "value3"})), *ACTION_3);
+    ASSERT_EQ(agent.execute(Percept{"key1", "value1"}), action1);
+    ASSERT_EQ(agent.execute(Percept{"key1", "value2"}), action2);
+    ASSERT_EQ(agent.execute(Percept{"key1", "value3"}), action3);
 }
 
-TEST_F(TableDrivenAgentProgramTest, testNonExistingSequences)
-{
+TEST_F(TableDrivenAgentProgramTest, testNonExistingSequences) {
     agent.set_program(program);
-    ASSERT_EQ(*(agent.execute(Percept{"key1", "value1"})), *ACTION_1);
-    ASSERT_EQ(*(agent.execute(Percept{"key1", "value3"})), *ag::NoOpAction::no_op_ptr());
+    ASSERT_EQ(agent.execute(Percept{"key1", "value1"}), action1);
+    ASSERT_TRUE(agent.execute(Percept{"key1", "value3"}).is_no_op());
 }
-*/
-//TODO: search for returning the address of a local variable as a pointer return value
+
 

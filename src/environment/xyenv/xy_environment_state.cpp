@@ -33,11 +33,8 @@ void XYState::check_object(const EnvironmentObject& obj) {
 
 std::vector<EnvironmentObject>& XYState::check_vector(const XYLocation& xy) {
     if (has_xy(xy) != get_map().end()) {
-    //std::cout << "Found! " << std::endl;
-    //std::cout << "vec size: " << itv->second.size() << std::endl;
         return itv->second;
     }
-    //std::cout << "Not found! " << std::endl;
     if (!vsize) create_vectors(); 
 
     m.emplace_back(xy, vector_cache[--vsize]);
@@ -103,49 +100,6 @@ void XYState::create_vectors() {
        vector_cache.emplace_back(std::vector<EnvironmentObject>{}); 
     }        
 }
-
-void XYState::perimeter(int x, int y) {
-    std::vector<Wall> walls;
-    std::vector<XYLocation> locs;    
-
-    for (int i =1; i <= x; ++i) {
-        walls.emplace_back(Wall());
-        locs.emplace_back(XYLocation(i, 1));
-        // bottom bound
-
-        walls.emplace_back(Wall());
-        locs.emplace_back(XYLocation(i, x));
-        // top bound
-    }
-
-    for (int i =1; i <= y; ++i) {
-        walls.emplace_back(Wall());
-        locs.emplace_back(XYLocation(x, i));
-        // right bound
-
-        walls.emplace_back(Wall());
-        locs.emplace_back(XYLocation(1, i));
-        // left bound
-    }
-
-    auto itw = walls.begin();
-    auto itx = locs.begin();
-
-    while (itw != walls.end()) {
-        add_object(*itw, *itx);
-        ++itw;
-        ++itx;
-    }
-}
-
-std::string XYState::print_inner_vector(const XYLocation& xy) {
-    //std::cout << "calling check_vector" << std::endl;
-    std::vector<EnvironmentObject> tmp = check_vector(xy);
-    std::cout << "vector size:" << tmp.size() << std::endl;
-    //std::string out = ut::print_eovec(tmp);
-    return "test";
-}
-
 
 
 
