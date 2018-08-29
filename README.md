@@ -5,8 +5,8 @@ C++ implementation of algorithms from [Russell](http://www.cs.berkeley.edu/~russ
 
 |Fig|Page|Name (in book)|Code|
 | -------- |:--------:| :-----| :----- |
-|2|34|Environment|[Environment](/aicpp/src/environment/xyenv)|
-|2.1|35|Agent|[Agent](/aicpp/src/agent)|
-|2.7|47|Agent|[Table-Driven-Agent](/aicpp/src/agent/agent_programs)|
+|2|34|Environment|[environment](/aicpp/src/environment/xyenv)|
+|2.1|35|Agent|[agent](/aicpp/src/agent)|
+|2.7|47|Table-Driven-Agent|[agent_programs](/aicpp/src/agent/agent_programs)|
 
 
