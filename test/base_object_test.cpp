@@ -1,7 +1,7 @@
 // base_object_test.cpp
 
-#include <gmock/gmock.h>
 #include <sstream>
+#include "gtest/gtest.h"
 #include "agent/percept.h"
 #include "util/algorithm/utils.h"
 

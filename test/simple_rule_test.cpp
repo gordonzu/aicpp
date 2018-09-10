@@ -2,7 +2,7 @@
 
 #include "agent/agent_programs/simple_rule/rule.h"
 #include "agent/percept.h"
-#include "gmock/gmock.h"
+#include "gtest/gtest.h"
 #include "agent/action.h"
 #include "util/algorithm/utils.h"
 

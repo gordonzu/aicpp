@@ -2,7 +2,7 @@
 
 #include <agent/percept.h>
 #include <memory>
-#include "gmock/gmock.h"
+#include "gtest/gtest.h"
 #include "util/algorithm/utils.h"
 
 using namespace::testing;

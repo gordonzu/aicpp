@@ -1,7 +1,7 @@
 // Created by gordonzu on 4/19/18.
 
 #include <memory>
-#include "gmock/gmock.h"
+#include "gtest/gtest.h"
 #include "agent/percept.h"
 
 using namespace::testing;

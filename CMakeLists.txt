@@ -2,12 +2,10 @@ project(aicpp)
 cmake_minimum_required(VERSION 2.6)
 
 include_directories(
-                    "$ENV{GMOCK_INC}"
                     "$ENV{GTEST_INC}"
                     "${CMAKE_CURRENT_SOURCE_DIR}/src"
                    )
 link_directories   (
-                    "$ENV{GMOCK_LIB}"
                     "$ENV{GTEST_LIB}"
                    )
 
@@ -27,6 +25,7 @@ set(
     src/agent/dynamic_object.cpp
     src/agent/action.cpp
 
+    test/vacuum_environment_test.cpp
     test/percept_test.cpp
 	test/base_object_test.cpp
     test/table_test.cpp
@@ -37,7 +36,6 @@ set(
    )
 
 add_executable(aicpp ${sources})
-target_link_libraries(aicpp gmock)
 target_link_libraries(aicpp gtest)
 target_link_libraries(aicpp pthread)
 

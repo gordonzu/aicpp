@@ -1,5 +1,5 @@
 
-#include "gmock/gmock.h"
+#include "gtest/gtest.h"
 #include "object.h"
 #include "util/datastructure/table.h"
 

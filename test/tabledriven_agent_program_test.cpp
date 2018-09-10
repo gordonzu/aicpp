@@ -1,7 +1,7 @@
 // Created by gordonzu on 4/1/18.
 
 #include <memory>
-#include "gmock/gmock.h"
+#include "gtest/gtest.h"
 #include "agent/agent.h"
 #include "agent/percept.h"
 #include "agent/action.h"
