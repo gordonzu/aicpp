@@ -16,7 +16,7 @@ set(
     main.cpp
     src/agent/agent.cpp
     src/environment/wall.cpp
-    src/environment/environment.cpp
+    src/environment/world.cpp
     src/environment/xyenv/xy_environment.cpp
     src/environment/xyenv/xy_environment_state.cpp
     src/util/datastructure/xy_location.cpp

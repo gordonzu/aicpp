@@ -10,7 +10,7 @@
 #include "percept.h"
 #include "agent_programs/agent_program.h"
 
-class Environment;
+class World;
 
 class Agent {
 public:

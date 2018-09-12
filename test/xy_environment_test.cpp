@@ -5,7 +5,7 @@
 #include "gtest/gtest.h"
 #include "environment/wall.h"
 #include "agent/agent.h"
-#include "environment/environment.h"
+#include "environment/world.h"
 #include "environment/xyenv/xy_environment.h"
 
 using namespace::testing;
@@ -17,8 +17,8 @@ public:
    	}
 
     void TearDown() override {
-        StaticEnvironment::get_objects().clear();
-        StaticEnvironment::get_agents().clear();
+        World::get_objects().clear();
+        World::get_agents().clear();
     }
 
     Agent agent;
@@ -33,8 +33,8 @@ TEST_F(XYEnvironmentTest, testMatrixConstruction) {
 
     env.add_to(wall, loc);
     ASSERT_EQ(env.inner_vector_size(loc), size_t(2));
-    ASSERT_EQ(StaticEnvironment::get_objects().size(), size_t(2));
-    ASSERT_EQ(StaticEnvironment::get_agents().size(), size_t(1));
+    ASSERT_EQ(World::get_objects().size(), size_t(2));
+    ASSERT_EQ(World::get_agents().size(), size_t(1));
 }
 
 TEST_F(XYEnvironmentTest, testObjectIsUnique) {
@@ -43,8 +43,8 @@ TEST_F(XYEnvironmentTest, testObjectIsUnique) {
 
     ASSERT_EQ(env.inner_vector_size(xy), size_t(1));
     ASSERT_EQ(env.inner_vector_size(loc), size_t(0));
-    ASSERT_EQ(StaticEnvironment::get_objects().size(), size_t(1));
-    ASSERT_EQ(StaticEnvironment::get_agents().size(), size_t(1));
+    ASSERT_EQ(World::get_objects().size(), size_t(1));
+    ASSERT_EQ(World::get_agents().size(), size_t(1));
 }
 
 TEST_F(XYEnvironmentTest, testGetCurrentLocation) {
@@ -58,8 +58,8 @@ TEST_F(XYEnvironmentTest, testGetCurrentLocation) {
 TEST_F(XYEnvironmentTest, testAddObjects) {
     XYLocation xyloc{9,9};
     env.add_to(wall, xyloc);
-    ASSERT_EQ(StaticEnvironment::get_agents().size(), size_t(1));
-    ASSERT_EQ(StaticEnvironment::get_objects().size(), size_t(2));
+    ASSERT_EQ(World::get_agents().size(), size_t(1));
+    ASSERT_EQ(World::get_objects().size(), size_t(2));
 
     XYLocation xy{9,9};
     ASSERT_EQ(env.inner_vector_size(xy), size_t(1));
@@ -135,7 +135,7 @@ TEST_F(XYEnvironmentTest, testMoveWithBlockingWalls) {
     Wall westwall;
     env.add_to(southwall, southloc);
     env.add_to(westwall, westloc);
-    ASSERT_EQ(StaticEnvironment::get_objects().size(), size_t(4));
+    ASSERT_EQ(World::get_objects().size(), size_t(4));
 
     env.move_object(agent, XYLocation::Direction::NORTH); // should not move
     env.move_object(agent, XYLocation::Direction::SOUTH); // should not move

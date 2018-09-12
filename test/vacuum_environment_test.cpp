@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 #include "agent/action.h"
 #include "agent/reflex_agent.h"
-#include "environment/environment.h"
+#include "environment/world.h"
 #include "environment/vacuum/vacuum_environment.h"
 
 using namespace::testing;
@@ -12,7 +12,7 @@ using Mbrva = ModelBasedReflexVacuumAgent;
 class VacuumEnvironmentTest : public Test {
 public:
     VacuumEnvironmentTest() : a{Mbrva{}} {}
-    ~VacuumEnvironmentTest() { StaticEnvironment::get_agents().clear(); } 
+    ~VacuumEnvironmentTest() { World::get_agents().clear(); } 
 
     VacuumEnvironment ve1{VacuumEnvironment::LocationState::dirty,
                          VacuumEnvironment::LocationState::dirty};

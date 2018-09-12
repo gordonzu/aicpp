@@ -11,7 +11,7 @@
 
 using Vec = std::vector<EnvironmentObject>;
 
-class StaticEnvironment {
+class World {
 public:
     static void add_environment_object(EnvironmentObject eo);
     static void add_agent(EnvironmentObject eo);

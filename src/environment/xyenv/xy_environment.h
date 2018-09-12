@@ -4,11 +4,11 @@
 #define XY_ENVIRONMENT_H
 
 #include <memory>
-#include "environment/environment.h"
+#include "environment/world.h"
 #include "util/datastructure/xy_location.h"
 #include "xy_environment_state.h"
 
-class XYEnvironment: public StaticEnvironment {
+class XYEnvironment: public World {
 public:
     XYEnvironment() = delete;
     XYEnvironment(int w, int h);

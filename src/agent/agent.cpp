@@ -1,7 +1,7 @@
 // gordon zuehlke on 8/27/18
 
 #include "agent.h"
-#include "environment/environment.h"
+#include "environment/world.h"
 
 Agent::Agent(): ap{nullptr} {
     //std::cout << "ctor..." << std::endl;
