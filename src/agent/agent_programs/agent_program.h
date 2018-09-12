@@ -22,7 +22,7 @@ public:
     virtual Action execute(const Percept& p)=0;
 };
 
-class TableDrivenAgentProgram: public AgentProgram {
+/*class TableDrivenAgentProgram: public AgentProgram {
 public:
     TableDrivenAgentProgram()=delete;
     ~TableDrivenAgentProgram() override=default;
@@ -46,7 +46,7 @@ private:
     PMap::iterator outer;
     AMap::iterator inner;
     size_t x;
-};
+};*/
 
 #endif //AICPP_AGENT_PROGRAM_H
 

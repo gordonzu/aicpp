@@ -5,7 +5,7 @@
 #include "agent/agent.h"
 #include "agent/percept.h"
 #include "agent/action.h"
-#include "agent/agent_programs/agent_program.h"
+#include "agent/agent_programs/table_driven_agent_program.h"
 
 using namespace::testing;
 

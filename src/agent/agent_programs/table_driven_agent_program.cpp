@@ -1,6 +1,6 @@
-// Created by gordonzu on 4/24/18.
+// Gordon Zuehlke 9/11/2018
 
-#include "agent_program.h"
+#include "table_driven_agent_program.h"
 
 TableDrivenAgentProgram::TableDrivenAgentProgram(MMap& m) {
     str_action = "action";
@@ -47,7 +47,6 @@ Action TableDrivenAgentProgram::get_value(PRow& rowh, std::string& column) {
     return Action{}; 		
 }
 
-
 bool TableDrivenAgentProgram::update_row_(PRow& r, std::string& c, Action v) {
     inner = outer->second.find(c);
 
@@ -63,10 +62,6 @@ bool TableDrivenAgentProgram::insert_row_(PRow& r, std::string& c, Action v) {
     rows[r][c] = v;
     return rows.size() == ++x;                
 }
-
-
-
-
 
 
 

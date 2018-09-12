@@ -20,7 +20,7 @@ set(
     src/environment/xyenv/xy_environment.cpp
     src/environment/xyenv/xy_environment_state.cpp
     src/util/datastructure/xy_location.cpp
-    src/agent/agent_programs/agent_program.cpp
+    src/agent/agent_programs/table_driven_agent_program.cpp
     src/agent/dynamic_object.cpp
     src/agent/action.cpp
 
