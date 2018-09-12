@@ -32,15 +32,19 @@ public:
         states.emplace_back(std::make_pair(x, ls));
     }
 
-    void add_agent(const Agent& a) {
+    void add_agent_to(const Agent& a) {
         int id = generate_random((locations.size()-1));
         set_agent_location(a, locations[id]);
-        StaticEnvironment::add_agent(a);        
+        add_agent(a);        
     }
 
-    void add_agent(const Agent& a, const std::string& loc) {
+    void add_agent_to(const Agent& a, const std::string& loc) {
         set_agent_location(a, loc);
-        StaticEnvironment::add_agent(a);
+        add_agent(a);
+    }
+
+    std::string& get_location_for(Agent a) {
+        return get_agent_location(a); 
     }
 
     const std::string location_a{"A"};
@@ -80,10 +84,18 @@ private:
 
     void set_agent_location(Agent a, std::string location) {
         agent_locations.emplace_back(std::make_pair(a, location));
-    } 
+    }
 
+    std::string& get_agent_location(Agent a) {
+        auto itv = std::find_if(
+            agent_locations.begin(),
+            agent_locations.end(),
+            [a](std::pair<Agent, std::string>& mypair) {
+                return (mypair.first == a);
+        });
+        return itv->second;
+    }   
 };
-
 #endif
 
 

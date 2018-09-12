@@ -35,7 +35,7 @@ TEST_F(VacuumEnvironmentTest, testVEConstruction) {
 }
 
 TEST_F(VacuumEnvironmentTest, testAddAgent) {
-    ve1.add_agent(a, ve1.location_a);
-    ASSERT_TRUE(true);
+    ve1.add_agent_to(a, ve1.location_a);
+    ASSERT_EQ(ve1.get_agents().size(), size_t(1)) ;
 }
 

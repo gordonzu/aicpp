@@ -14,7 +14,6 @@ set(CMAKE_CXX_FLAGS "-std=c++17 -ggdb3 -Wall -Wno-unused-variable -O0 -fmax-erro
 set(
     sources
     main.cpp
-
     src/agent/agent.cpp
     src/environment/wall.cpp
     src/environment/environment.cpp
