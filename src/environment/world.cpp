@@ -3,9 +3,6 @@
 #include <iostream>
 #include "environment/world.h"
 
-Vec World::objects{};
-Vec World::agents{};
-
 Vec& World::get_agents() {
     return agents;
 }

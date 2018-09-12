@@ -13,15 +13,15 @@ using Vec = std::vector<EnvironmentObject>;
 
 class World {
 public:
-    static void add_environment_object(EnvironmentObject eo);
-    static void add_agent(EnvironmentObject eo);
+    void add_environment_object(EnvironmentObject eo);
+    void add_agent(EnvironmentObject eo);
 
-    static Vec& get_objects();
-    static Vec& get_agents();
+    Vec& get_objects();
+    Vec& get_agents();
 
 protected:
-    static Vec objects;
-    static Vec agents;
+    Vec objects;
+    Vec agents;
 };
 #endif
 

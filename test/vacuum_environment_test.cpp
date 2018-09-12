@@ -12,7 +12,7 @@ using Mbrva = ModelBasedReflexVacuumAgent;
 class VacuumEnvironmentTest : public Test {
 public:
     VacuumEnvironmentTest() : a{Mbrva{}} {}
-    ~VacuumEnvironmentTest() { World::get_agents().clear(); } 
+    ~VacuumEnvironmentTest() {} 
 
     VacuumEnvironment ve1{VacuumEnvironment::LocationState::dirty,
                          VacuumEnvironment::LocationState::dirty};

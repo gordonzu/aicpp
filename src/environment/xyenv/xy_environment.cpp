@@ -52,8 +52,8 @@ size_t XYEnvironment::inner_vector_size(const XYLocation& xy) {
 
 void XYEnvironment::add_to(const EnvironmentObject& eo, const XYLocation& loc) {
     state.add_object(eo, loc);
-    if (!eo.is_wall()) World::add_agent(eo);
-    World::add_environment_object(eo);
+    if (!eo.is_wall()) add_agent(eo);
+    add_environment_object(eo);
 }
 
 XYLocation XYEnvironment::get_location(const EnvironmentObject& eo) {
