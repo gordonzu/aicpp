@@ -25,6 +25,7 @@ set(
     src/agent/action.cpp
 
     test/vacuum_environment_test.cpp
+    test/reflex_vacuum_agent_test.cpp
     test/percept_test.cpp
 	test/base_object_test.cpp
     test/table_test.cpp
