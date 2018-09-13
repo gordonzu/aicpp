@@ -18,11 +18,12 @@ public:
                                     percept1{Percept{"key1", "value1"}},
                                     percept2{Percept{"key1", "value2"}},
                                     percept3{Percept{"key1", "value3"}} {
+
         load_map({percept1}, vec1, action1);
         load_map({percept1, percept2}, vec2, action2);
         load_map({percept1, percept2, percept3}, vec3, action3);
         program = new TableDrivenAgentProgram(sequences);
-        agent = Agent{program};
+        agent.set_program(program);
     }
 
     ~TableDrivenAgentProgramTest() {
@@ -38,11 +39,11 @@ public:
     ag::Action action1;
     ag::Action action2;
     ag::Action action3; 
-    AgentProgram* program = nullptr;
-
     Percept percept1;
     Percept percept2;
     Percept percept3;
+
+    AgentProgram* program;
     Agent agent;
 
 private:

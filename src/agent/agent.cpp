@@ -4,17 +4,14 @@
 #include "environment/world.h"
 
 Agent::Agent(): ap{nullptr} {
-    //std::cout << "ctor..." << std::endl;
     hashval = hash_it();
 } 
 
 Agent::Agent(AgentProgram* program): ap{program} {
-    //std::cout << "ctor..." << std::endl;
     hashval = hash_it();
 }
 
 Agent::~Agent() {
-    //if (ap) delete ap;
 }
 
 bool Agent::set_program(AgentProgram* program) {

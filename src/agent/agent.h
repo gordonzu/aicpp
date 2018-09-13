@@ -10,16 +10,14 @@
 #include "percept.h"
 #include "agent_programs/agent_program.h"
 
-class World;
-
 class Agent {
 public:
     Agent();
     Agent(AgentProgram* program);
-    ~Agent();
-    bool set_program(AgentProgram* program);
-    Action execute(const Percept& per); 
-    bool is_wall() const;
+    virtual ~Agent();
+    virtual bool set_program(AgentProgram* program);
+    virtual Action execute(const Percept& per); 
+    virtual bool is_wall() const;
     size_t hash_it();
 
     bool operator==(const Agent& x) const; 
