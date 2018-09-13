@@ -11,13 +11,9 @@
 class EnvironmentView {
 public:
     virtual ~EnvironmentView() {}
-    virtual void notify(const std::string& msg);
-    virtual void agent_added(const Agent& a, const World& w);
-    virtual void agent_acted(const Agent& a, const Percept& p, 
-                             const Action& act, const World& w);
-
-protected:
-    EnvironmentView() {}
+    virtual void notify(const std::string& msg) = 0;
+    virtual void agent_added(const Agent& a, const World& w) = 0;
+    virtual void agent_acted(const Agent& a, const Percept& p, Action& act, const World& w) = 0;
 };
 #endif
 

@@ -1,6 +1,6 @@
 // Gordon Zuehlke 9/11/2018
 
-#include "table_driven_agent_program.h"
+#include "table_driven.h"
 
 TableDrivenAgentProgram::TableDrivenAgentProgram(MMap& m) {
     str_action = "action";

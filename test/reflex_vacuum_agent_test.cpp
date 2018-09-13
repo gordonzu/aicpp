@@ -7,11 +7,27 @@
 
 using namespace::testing;
 
-class reflex_vacuum_agent_test : public Test 
+class ReflexVacuumAgentTest : public Test 
 {
+public:
+    ReflexVacuumAgentTest() : agent{ReflexVacuumAgent{}}, tracker{new SimpleActionTracker()} {}
+
+    ~ReflexVacuumAgentTest() { 
+        delete tracker;
+        tracker = nullptr;
+    }
+
+    const Agent& agent;
+    EnvironmentView* tracker;
 };
 
-TEST_F(reflex_vacuum_agent_test, test_agent) {
+TEST_F(ReflexVacuumAgentTest, test_clean_clean) {
+    VacuumEnvironment ve{VacuumEnvironment::LocationState::clean,
+                         VacuumEnvironment::LocationState::clean};
+
+    ve.add_agent_to(agent, ve.location_a);
+    ve.add_view(tracker);
+
     ASSERT_TRUE(true);
 }
 

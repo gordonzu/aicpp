@@ -20,19 +20,19 @@ set(
     src/environment/xyenv/xy_environment.cpp
     src/environment/xyenv/xy_environment_state.cpp
     src/util/datastructure/xy_location.cpp
-    src/agent/agent_programs/table_driven_agent_program.cpp
+    src/agent/agent_programs/table_driven.cpp
     src/agent/dynamic_object.cpp
     src/agent/action.cpp
 
-    test/vacuum_environment_test.cpp
+    #test/vacuum_environment_test.cpp
     test/reflex_vacuum_agent_test.cpp
-    test/percept_test.cpp
-	test/base_object_test.cpp
-    test/table_test.cpp
-    test/percept_sequence_test.cpp
-    test/xy_environment_test.cpp
-    test/simple_rule_test.cpp
-    test/tabledriven_agent_program_test.cpp
+    #test/percept_test.cpp
+	#test/base_object_test.cpp
+    #test/table_test.cpp
+    #test/percept_sequence_test.cpp
+    #test/xy_environment_test.cpp
+    #test/simple_rule_test.cpp
+    #test/tabledriven_agent_program_test.cpp
    )
 
 add_executable(aicpp ${sources})

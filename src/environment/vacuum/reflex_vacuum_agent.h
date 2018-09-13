@@ -3,8 +3,11 @@
 #ifndef AICPP_REFLEX_VACUUM_AGENT_H
 #define AICPP_REFLEX_VACUUM_AGENT_H
 
+#include "agent/agent.h"
 
-class ReflexVacuumAgent {};
+class ReflexVacuumAgent : public Agent {
 
+
+};
 
 #endif

@@ -9,19 +9,23 @@
 #include "environment_object.h"
 #include "agent/agent.h"
 
-using Vec = std::vector<EnvironmentObject>;
+class EnvironmentView;
+using ObjectVec = std::vector<EnvironmentObject>;
+using ViewVec = std::vector<EnvironmentView*>;
 
-class World {
+class World { 
 public:
     void add_environment_object(EnvironmentObject eo);
     void add_agent(EnvironmentObject eo);
-
-    Vec& get_objects();
-    Vec& get_agents();
+    void add_view(EnvironmentView* view);
+    ViewVec& get_views();
+    ObjectVec& get_objects();
+    ObjectVec& get_agents();
 
 protected:
-    Vec objects;
-    Vec agents;
+    ViewVec views;
+    ObjectVec objects;
+    ObjectVec agents;
 };
 #endif
 

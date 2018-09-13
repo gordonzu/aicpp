@@ -5,7 +5,7 @@
 
 #include "agent/agent.h"
 #include "agent/action.h"
-#include "agent_programs/model_based_reflex_agent_program.h"
+#include "agent_programs/model_based_reflex.h"
 
 class ModelBasedReflexVacuumAgent : public Agent {
 public:
