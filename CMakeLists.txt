@@ -24,15 +24,15 @@ set(
     src/agent/dynamic_object.cpp
     src/agent/action.cpp
 
-    #test/vacuum_environment_test.cpp
+    test/vacuum_environment_test.cpp
     test/reflex_vacuum_agent_test.cpp
-    #test/percept_test.cpp
-	#test/base_object_test.cpp
-    #test/table_test.cpp
-    #test/percept_sequence_test.cpp
-    #test/xy_environment_test.cpp
-    #test/simple_rule_test.cpp
-    #test/tabledriven_agent_program_test.cpp
+    test/percept_test.cpp
+	test/base_object_test.cpp
+    test/table_test.cpp
+    test/percept_sequence_test.cpp
+    test/xy_environment_test.cpp
+    test/simple_rule_test.cpp
+    test/tabledriven_agent_program_test.cpp
    )
 
 add_executable(aicpp ${sources})
