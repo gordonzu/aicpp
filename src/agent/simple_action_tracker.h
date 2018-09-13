@@ -5,24 +5,31 @@
 
 #include "environment/environment_view.h"
 
-class SimpleActionTracker : public EnvironmentView {
+class SimpleActionTracker {
 public:
     SimpleActionTracker() {}
 
     virtual ~SimpleActionTracker() {}
 
-    void notify(const std::string& msg) override {}
+    void notify(const std::string& msg) {}
 
-    void agent_added(const Agent& a, const World& w) override {} 
+    void agent_added(const Agent& a, World* w) {} 
    
-    void agent_acted(const Agent& a, const Percept& p, Action& act, const World& w) override {
+    void agent_acted(const Agent& a, const Percept& p, Action& act, World* w) {
         if (actions.size() > size_t(0)) actions.append(", ");
         actions.append(act.str_rep()); 
     }
     
     std::string& get_actions() { return actions; }
+    
+    friend std::ostream& operator<<(std::ostream& out, const SimpleActionTracker& x) {
+        out << "tracker: ";
+        return out;
+    }
 
 private:
     std::string actions;
 };
 #endif
+
+

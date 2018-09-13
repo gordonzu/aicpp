@@ -23,7 +23,7 @@ void World::add_environment_object(EnvironmentObject e) {
     if (std::find(objects.begin(), objects.end(), e) == objects.end()) objects.emplace_back(e);
 }
 
-void World::add_view(EnvironmentView* v) {
+void World::add_view(EnvironmentView v) {
     if (std::find(views.begin(), views.end(), v) == views.end()) views.emplace_back(v);    
 }
 

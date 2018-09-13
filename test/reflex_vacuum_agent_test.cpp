@@ -10,15 +10,12 @@ using namespace::testing;
 class ReflexVacuumAgentTest : public Test 
 {
 public:
-    ReflexVacuumAgentTest() : agent{ReflexVacuumAgent{}}, tracker{new SimpleActionTracker()} {}
+    ReflexVacuumAgentTest() : agent{ReflexVacuumAgent{}}, tracker{SimpleActionTracker{}} {}
 
-    ~ReflexVacuumAgentTest() { 
-        delete tracker;
-        tracker = nullptr;
-    }
+    ~ReflexVacuumAgentTest() {}
 
     const Agent& agent;
-    EnvironmentView* tracker;
+    const EnvironmentView& tracker;
 };
 
 TEST_F(ReflexVacuumAgentTest, test_clean_clean) {
