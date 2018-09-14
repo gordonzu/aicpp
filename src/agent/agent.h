@@ -18,6 +18,7 @@ public:
     virtual bool set_program(AgentProgram* program);
     virtual Action execute(const Percept& per); 
     virtual bool is_wall() const;
+    bool is_alive() const;
     size_t hash_it();
 
     bool operator==(const Agent& x) const; 
@@ -26,6 +27,7 @@ public:
 protected:
     AgentProgram* ap;
     bool iswall{false};
+    bool alive{true};
     size_t hashval{0};
 };
 #endif //AICPP_AGENT_H

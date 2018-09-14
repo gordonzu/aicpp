@@ -21,6 +21,8 @@ public:
     ViewVec& get_views();
     ObjectVec& get_objects();
     ObjectVec& get_agents();
+    void step(int x);
+    void step();
 
 protected:
     ViewVec views;

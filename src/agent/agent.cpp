@@ -35,6 +35,10 @@ bool Agent::is_wall() const {
     return iswall;
 }
 
+bool Agent::is_alive() const {
+    return alive;
+}
+
 bool Agent::operator==(const Agent& x) const {
     return hashval == x.hashval; 
 }

@@ -27,4 +27,19 @@ void World::add_view(EnvironmentView v) {
     if (std::find(views.begin(), views.end(), v) == views.end()) views.emplace_back(v);    
 }
 
+void World::step() {
+    //std::cout << "Calling step()... " << std::endl;
+    for (auto& x : agents) {
+        if (x.is_alive()) {
+            std::cout << "Agent is alive" << std::endl;
+        }
+    }
+}
+
+void World::step(int x) {
+    for (int i = 1; i <= x; ++i) {
+        step();
+    }
+}
+
 

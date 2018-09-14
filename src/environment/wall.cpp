@@ -10,6 +10,10 @@ bool Wall::is_wall() const {
     return iswall;
 }
 
+bool Wall::is_alive() const {
+    return alive;
+}
+
 bool Wall::operator==(const Wall& x) {
     return hashval == x.hashval;
 }

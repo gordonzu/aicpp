@@ -24,6 +24,7 @@ TEST_F(ReflexVacuumAgentTest, test_clean_clean) {
 
     ve.add_agent_to(agent, ve.location_a);
     ve.add_view(tracker);
+    ve.step(8);
 
     ASSERT_TRUE(true);
 }

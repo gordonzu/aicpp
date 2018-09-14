@@ -29,6 +29,10 @@ public:
         return object->is_wall_();
     }
 
+    bool is_alive() const {
+        return object->is_alive_();
+    }
+
     bool operator==(const EnvironmentObject& x) const {
         return object->print_object_() == x.object->print_object_();
     }
@@ -50,6 +54,7 @@ private:
 	struct concept {
     	virtual ~concept() {}
         virtual bool is_wall_() const = 0;
+        virtual bool is_alive_() const = 0;
         virtual std::string  print_object_() const = 0;
    	};
 
@@ -64,6 +69,10 @@ private:
 
         bool is_wall_() const override {
             return object.is_wall();
+        }
+
+        bool is_alive_() const override {
+            return object.is_alive();
         }
 
     private:
