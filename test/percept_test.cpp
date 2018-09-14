@@ -15,7 +15,7 @@ public:
     {
     }
 
-	Object key1, val1, key2, val2, key3, val3;
+	Attribute key1, val1, key2, val2, key3, val3;
 };
 
 TEST_F(Percept_test, testString)

@@ -27,7 +27,7 @@ bool DynamicObject::operator==(const DynamicObject& x) const {
     return attributes_ == x.attributes_;
 }
 
-bool DynamicObject::set_attribute(const Object& key,  const Object& val) {
+bool DynamicObject::set_attribute(const Attribute& key,  const Attribute& val) {
     //std::cout << "Print key=" << key << " val=" << val << std::endl; 
     auto x = attributes_.emplace(key, val);
     if (x.second) return true;
@@ -35,7 +35,7 @@ bool DynamicObject::set_attribute(const Object& key,  const Object& val) {
     //std::cout << "attributes_ size: " << attributes_.size() << std::endl;
 }
 
-const std::optional<Object> DynamicObject::get_attribute(const Object& key) const {
+const std::optional<Attribute> DynamicObject::get_attribute(const Attribute& key) const {
         //std::cout << "--------------------------------------" << std::endl;  
         //std::cout << "Calling DynamicObject::get_attribute()" << std::endl;  
         //std::cout << "attributes_ size: " << attributes_.size() << std::endl;  
@@ -44,7 +44,7 @@ const std::optional<Object> DynamicObject::get_attribute(const Object& key) cons
     try {
         auto it = attributes_.find(key);
         if (it != attributes_.end()) {
-            return std::optional<Object>(it->second);
+            return std::optional<Attribute>(it->second);
         } 
         else {
            throw lookup_exception();

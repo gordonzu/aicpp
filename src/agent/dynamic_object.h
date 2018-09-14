@@ -7,9 +7,9 @@
 #include <memory>
 #include <string>
 #include <optional>
-#include "object.h"
+#include "util/types/attribute.h"
 
-using map_t = std::map<Object, Object>;
+using map_t = std::map<Attribute, Attribute>;
 
 class DynamicObject
 {
@@ -28,8 +28,8 @@ public:
     bool operator==(const DynamicObject& x) const;
 	friend std::ostream& operator<<(std::ostream& out, DynamicObject& x);
 
-    bool set_attribute(const Object& key, const Object& val);
-    const std::optional<Object> get_attribute(const Object& key) const;
+    bool set_attribute(const Attribute& key, const Attribute& val);
+    const std::optional<Attribute> get_attribute(const Attribute& key) const;
     const map_t& get_map() const;
 
     std::string& get_string();

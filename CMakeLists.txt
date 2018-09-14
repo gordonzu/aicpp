@@ -1,3 +1,14 @@
+# TODO:
+# change Object class location to util/types folder
+# change name of Object to Attribute
+
+# keep EnvironmentObject's name and location  
+
+# is Percept now an EnvironmentObject? 
+
+
+
+
 project(aicpp)
 cmake_minimum_required(VERSION 2.6)
 

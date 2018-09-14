@@ -22,32 +22,32 @@ std::string print_string(const T& x) {
     return str_;
 }
 
-class Object {
+class Attribute {
 public:
     template<typename T>
-    Object(T x) : self_(std::make_shared<model<T>>(std::move(x))) {
+    Attribute(T x) : self_(std::make_shared<model<T>>(std::move(x))) {
     }
 
-	Object() : self_(nullptr) {
+	Attribute() : self_(nullptr) {
 	}
 
-    bool operator==(const Object& x) const {
+    bool operator==(const Attribute& x) const {
         return self_->print_string_() == x.self_->print_string_();
     }
 
-    bool operator!=(const Object& x) const {
+    bool operator!=(const Attribute& x) const {
         return self_->print_string_() != x.self_->print_string_();
     }
 
-	bool operator<(const Object& x) const {
+	bool operator<(const Attribute& x) const {
 		return self_->print_string_() < x.self_->print_string_();
 	}
 
-    friend std::string print_string(const Object& x) {
+    friend std::string print_string(const Attribute& x) {
         return x.self_->print_string_();      
     }
 
-    friend std::ostream& operator<<(std::ostream& out, const Object& x) {
+    friend std::ostream& operator<<(std::ostream& out, const Attribute& x) {
         out << x.self_->print_string_();
         return out;
     }   
@@ -82,9 +82,9 @@ struct lookup_exception : public std::exception {
 
 namespace std {
     template<>
-    struct hash<Object>
+    struct hash<Attribute>
     {
-        size_t operator()(const Object& x) const
+        size_t operator()(const Attribute& x) const
         {
             std::string str = print_string(x);
             return hash<std::string>()(str);

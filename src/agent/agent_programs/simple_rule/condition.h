@@ -14,11 +14,11 @@ public:
 };
 
 class EqualCondition : public Condition {
-    Object key;
-    Object value;
+    Attribute key;
+    Attribute value;
 
 public:
-    EqualCondition(Object x, Object y): key{x}, value{y} {}
+    EqualCondition(Attribute x, Attribute y): key{x}, value{y} {}
 
     virtual ~EqualCondition() override = default;
 

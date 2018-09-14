@@ -14,12 +14,12 @@ public:
                      key2{"key2"}, val2{"value2"}
     {}
 
-    Object key1, val1, key2, val2; 
+    Attribute key1, val1, key2, val2; 
 };
 
 TEST_F(PerceptSequenceTest, test_string)
 {
-    std::vector<Object> vec;
+    std::vector<Attribute> vec;
 
     vec.emplace_back(Percept{"key1", "value1"});
     ASSERT_STREQ(print_string(vec[0]).c_str(), "Percept[key1=value1]");

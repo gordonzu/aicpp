@@ -1,6 +1,6 @@
 
 #include "gtest/gtest.h"
-#include "object.h"
+#include "util/types/attribute.h"
 #include "util/datastructure/table.h"
 
 using namespace::testing;
@@ -19,7 +19,7 @@ public:
                   i{85000}, j{50000}, ii{300000}, jj{175000}, t{Table{}}   
     {}
 
-    Object rowh1, rowh2, rowh3, rowh4, col1, col2, col3, col4;
+    Attribute rowh1, rowh2, rowh3, rowh4, col1, col2, col3, col4;
     std::string str1, str2;
     bool b1, b2;
     const char* cstr1; 

@@ -102,7 +102,7 @@ namespace ag {
         out.append(Action::attribute_name);
         out.append("=");
 
-        std::optional<Object> att(this->get_attribute(attribute_name));
+        std::optional<Attribute> att(this->get_attribute(attribute_name));
 
         if (att) { 
             out.append(print_string(*att));

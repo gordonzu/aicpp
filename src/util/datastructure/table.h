@@ -6,18 +6,18 @@
 
 #include <vector>
 #include <map>
-#include "object.h"
+#include "util/types/attribute.h"
 
-using vector_t = std::vector<Object>;
-using map_t = std::map<Object, Object>;
-using table_t = std::map<Object, map_t>; 
+using vector_t = std::vector<Attribute>;
+using map_t = std::map<Attribute, Attribute>;
+using table_t = std::map<Attribute, map_t>; 
 
 class Table {
 
 public:
     Table() = default; 
 
-    bool set_value(const Object& rowh, const Object& column, const Object& value) {
+    bool set_value(const Attribute& rowh, const Attribute& column, const Attribute& value) {
         x = t.size();
 
         if ((outer = t.find(rowh)) != t.end()) {
@@ -26,7 +26,7 @@ public:
         return insert_row_(rowh, column, value);
    }
 
-	std::optional<Object> get_value(const Object& rowh, const Object& column) {
+	std::optional<Attribute> get_value(const Attribute& rowh, const Attribute& column) {
         if ((outer = t.find(rowh)) != t.end()) {
 			if ((inner = outer->second.find(column)) != outer->second.end())
 			{
@@ -53,7 +53,7 @@ private:
     map_t::iterator inner;
     size_t x;
 
-    bool update_row_(const Object& row, const Object& col, const Object& val)
+    bool update_row_(const Attribute& row, const Attribute& col, const Attribute& val)
     {
         inner = outer->second.find(col);
         if (inner != outer->second.end())
@@ -65,7 +65,7 @@ private:
         return outer->second.at(col) == val;
     }
 
-    bool insert_row_(const Object& row, const Object& col, const Object& val)
+    bool insert_row_(const Attribute& row, const Attribute& col, const Attribute& val)
     {
         t[row][col] = val;
         return t.size() == ++x;                

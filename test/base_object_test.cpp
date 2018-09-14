@@ -18,10 +18,10 @@ public:
         set_map();
     }
 
-    Object key1, val1, key2, val2, key3, val3, key4, val4;
+    Attribute key1, val1, key2, val2, key3, val3, key4, val4;
     map_t attributes;
     std::stringstream str_out;
-    std::map<Object, Object>::iterator it;
+    std::map<Attribute, Attribute>::iterator it;
 
 private:
     void set_map()
@@ -89,27 +89,27 @@ TEST_F(base_object_test, test_attributes)
 }
 
 
-Object key1{"key365"};
+Attribute key1{"key365"};
 
 auto return_key1(bool b) 
 {
-    return b ? std::optional<Object>(key1) : std::nullopt;
+    return b ? std::optional<Attribute>(key1) : std::nullopt;
 }
 
 auto return_key2(bool b) 
 {
-    return b ? std::optional<Object>("key1") : std::nullopt;
+    return b ? std::optional<Attribute>("key1") : std::nullopt;
 }
  
 auto return_key3(bool b) 
 {
-    return b ? std::optional<Object>(true) : std::nullopt;
+    return b ? std::optional<Attribute>(true) : std::nullopt;
 }
 
  
 TEST_F(base_object_test, test_bools)
 {
-    std::optional<Object> retval = key1;
+    std::optional<Attribute> retval = key1;
     ASSERT_TRUE(retval);
 
     ASSERT_TRUE(return_key1(true)); 

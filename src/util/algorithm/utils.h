@@ -7,13 +7,13 @@
 #include <map>
 #include <algorithm>
 #include <memory>
-#include "object.h"
+#include "util/types/attribute.h"
 #include "environment/environment_object.h"
 
 using eovector_t = std::vector<EnvironmentObject>;
-using vector_t = std::vector<Object>;
-using map_t = std::map<Object, Object>;
-using table_t = std::map<Object, map_t>; 
+using vector_t = std::vector<Attribute>;
+using map_t = std::map<Attribute, Attribute>;
+using table_t = std::map<Attribute, map_t>; 
 
 namespace ut {
     inline bool vec_compare(const vector_t& v1, const vector_t& v2) {
