@@ -10,23 +10,28 @@ using namespace::testing;
 class ReflexVacuumAgentTest : public Test 
 {
 public:
-    ReflexVacuumAgentTest() : agent{ReflexVacuumAgent{}}, tracker{SimpleActionTracker{}} {}
+    ReflexVacuumAgentTest() {}
 
-    ~ReflexVacuumAgentTest() {}
+    ~ReflexVacuumAgentTest() {
+        delete agent;
+        delete tracker;
+        agent = nullptr;
+        tracker = nullptr;
+    }
 
-    const Agent& agent;
-    const EnvironmentView& tracker;
+    Agent* agent = new ReflexVacuumAgent();
+    EnvironmentView* tracker = new SimpleActionTracker();
 };
 
 TEST_F(ReflexVacuumAgentTest, test_clean_clean) {
     VacuumEnvironment ve{VacuumEnvironment::LocationState::clean,
                          VacuumEnvironment::LocationState::clean};
 
-    ve.add_agent_to(agent, ve.location_a);
+    ve.add_agent_to(*agent, ve.location_a);
     ve.add_view(tracker);
     ve.step(8);
 
-    ASSERT_TRUE(true);
+    ASSERT_TRUE(agent->program_state());
 }
 
 

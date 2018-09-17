@@ -6,7 +6,10 @@
 #include <sstream>
 #include <memory>
 #include "util/datastructure/xy_location.h"
+#include "agent/action.h"
+#include "agent/percept.h"
 
+using namespace ag;
 using std::make_shared;
 using std::shared_ptr;
 using std::move;
@@ -33,6 +36,10 @@ public:
         return object->is_alive_();
     }
 
+    Action the_test(Percept& p) const {
+        return object->the_test_(p);
+    }
+
     bool operator==(const EnvironmentObject& x) const {
         return object->print_object_() == x.object->print_object_();
     }
@@ -55,6 +62,7 @@ private:
     	virtual ~concept() {}
         virtual bool is_wall_() const = 0;
         virtual bool is_alive_() const = 0;
+        virtual Action the_test_(Percept& p) const = 0;
         virtual std::string  print_object_() const = 0;
    	};
 
@@ -73,6 +81,10 @@ private:
 
         bool is_alive_() const override {
             return object.is_alive();
+        }
+
+        Action the_test_(Percept& p) const override {
+            return object.the_test(p);
         }
 
     private:

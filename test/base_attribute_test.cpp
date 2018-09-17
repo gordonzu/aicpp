@@ -1,4 +1,4 @@
-// base_object_test.cpp
+// BaseAttributeTest.cpp
 
 #include <sstream>
 #include "gtest/gtest.h"
@@ -7,14 +7,13 @@
 
 using namespace::testing;
 
-class base_object_test: public Test 
+class BaseAttributeTest: public Test 
 {
 public:
-    base_object_test() : key1{"key55"}, val1{"value55"},
+    BaseAttributeTest() : key1{"key55"}, val1{"value55"},
                          key2{"key66"}, val2{"value66"},
                          key3{"key77"}, val3{547996},
-                         key4{"key88"}, val4{false}
-    {
+                         key4{"key88"}, val4{false} {
         set_map();
     }
 
@@ -36,7 +35,7 @@ private:
     }
 };
 
-TEST_F(base_object_test, test_attributes)
+TEST_F(BaseAttributeTest, test_attributes)
 {
     ASSERT_TRUE(attributes.size() == 7);
 
@@ -107,7 +106,7 @@ auto return_key3(bool b)
 }
 
  
-TEST_F(base_object_test, test_bools)
+TEST_F(BaseAttributeTest, test_bools)
 {
     std::optional<Attribute> retval = key1;
     ASSERT_TRUE(retval);

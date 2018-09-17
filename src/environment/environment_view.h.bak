@@ -1,0 +1,85 @@
+// gordon zuehlke on 9/12/18.
+
+#ifndef ENVIRONMENT_VIEW_H
+#define ENVIRONMENT_VIEW_H
+
+#include "agent/agent.h"
+#include "agent/percept.h"
+#include "agent/action.h"
+//#include "environment/world.h"
+
+class World;
+using std::make_shared;
+using std::shared_ptr;
+using std::move;
+
+template<typename T>
+std::string print_view(const T& x) {
+    std::stringstream out;
+    size_t hashval = reinterpret_cast<uint64_t>(&x);
+    out << typeid(x).name() << hashval;
+    std::string str_ = out.str();
+    return str_;
+}
+
+class EnvironmentView {
+public:
+    template<typename T> 
+    EnvironmentView(const T& obj) : object{make_shared<model<T>>(move(obj))} {}
+                                     
+    bool operator==(const EnvironmentView& x) const {
+        return object->print_view_() == x.object->print_view_();
+    }
+
+    bool operator==(EnvironmentView& x) const {
+        return object->print_view_() == x.object->print_view_();
+    }
+
+    friend std::string print_view(const EnvironmentView& x) {
+        return x.object->print_view_();      
+    }
+
+    friend std::ostream& operator<<(std::ostream& out, const EnvironmentView& x) {
+        out << x.object->print_view_();
+        return out;
+    }   
+
+private:
+	struct concept {
+    	virtual ~concept() {}
+        virtual std::string  print_view_() const = 0;
+        virtual void notify_(const std::string& msg) = 0;
+        virtual void agent_added_(const Agent& a, World* w) = 0;
+        virtual void agent_acted_(const Agent& a, const Percept& p, Action& act, World* w) = 0;
+   	};
+
+   	template<typename T> 
+	struct model : concept {
+    	model(const T& t) : object(t) {}
+       	virtual ~model() {}
+
+        std::string print_view_() const override {
+            return print_string(object);    
+        } 
+
+        void notify_(const std::string& msg) {
+            return object.notify(msg);
+        }
+
+        void agent_added_(const Agent& a, World* w) {
+            return object.agent_added(a, w);
+        }
+
+        void agent_acted_(const Agent& a, const Percept& p, Action& ac, World* w) {
+            return object.agent_acted(a, p, ac, w);
+        }
+
+    private:
+    	T object;
+    };
+    shared_ptr<const concept> object;
+};
+#endif
+
+
+

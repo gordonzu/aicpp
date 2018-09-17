@@ -14,6 +14,10 @@ bool Wall::is_alive() const {
     return alive;
 }
 
+Action Wall::the_test(Percept& p) const {
+    return Action{};
+}
+
 bool Wall::operator==(const Wall& x) {
     return hashval == x.hashval;
 }

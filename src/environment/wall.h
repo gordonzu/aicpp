@@ -12,6 +12,7 @@ public:
     Wall();
     bool is_wall() const;
     bool is_alive() const;
+    Action the_test(Percept& p) const;
     bool operator==(const Wall& x);
     friend std::ostream& operator<<(std::ostream& out, const Wall& x);
     size_t hash_it();

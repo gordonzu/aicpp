@@ -3,7 +3,7 @@
 #include "agent.h"
 #include "environment/world.h"
 
-Agent::Agent(): ap{nullptr} {
+Agent::Agent() : ap{nullptr} {
     hashval = hash_it();
 } 
 
@@ -22,11 +22,26 @@ bool Agent::set_program(AgentProgram* program) {
     return false;
 }
 
-Action Agent::execute(const Percept& per) {
+bool Agent::program_state() const {
+    if (ap == nullptr) return true;
+    return false;
+}
+
+Action Agent::execute(const Percept& per) const {
     if (ap != nullptr) {
         Action tmp = ap->execute(per);
         bool c = tmp.is_no_op();
         return tmp;
+    }
+    return Action{};
+}
+
+Action Agent::the_test(const Percept& per) const {
+    if (ap != nullptr) {
+        std::cout << "ap is not null" << std::endl;
+        Action tmp = ap->execute(per);
+        //bool c = tmp.is_no_op();
+        //return tmp;
     }
     return Action{};
 }

@@ -16,11 +16,13 @@ public:
     Agent(AgentProgram* program);
     virtual ~Agent();
     virtual bool set_program(AgentProgram* program);
-    virtual Action execute(const Percept& per); 
+    virtual Action execute(const Percept& per) const; 
     virtual bool is_wall() const;
     bool is_alive() const;
     size_t hash_it();
-
+    Action the_test(const Percept& p) const;
+    bool program_state() const;
+    
     bool operator==(const Agent& x) const; 
     friend std::ostream& operator<<(std::ostream& out, const Agent& x);
  
