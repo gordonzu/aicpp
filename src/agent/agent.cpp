@@ -1,7 +1,7 @@
 // gordon zuehlke on 8/27/18
 
 #include "agent.h"
-#include "environment/world.h"
+//#include "environment/environment.h"
 
 Agent::Agent() : ap{nullptr} {
     hashval = hash_it();

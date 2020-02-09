@@ -8,7 +8,7 @@
 #include "agent/action.h"
 //#include "environment/world.h"
 
-class World;
+class Environment;
 using std::make_shared;
 using std::shared_ptr;
 using std::move;

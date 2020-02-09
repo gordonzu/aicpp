@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 #include "agent/action.h"
 #include "agent/reflex_agent.h"
-#include "environment/world.h"
+#include "environment/environment.h"
 #include "environment/vacuum/vacuum_environment.h"
 
 using namespace::testing;

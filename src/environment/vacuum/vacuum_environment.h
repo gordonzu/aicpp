@@ -5,10 +5,10 @@
 
 #include <vector>
 #include <random>
-#include "environment/world.h"
+#include "environment/environment.h"
 #include "agent/agent.h"
 
-class VacuumEnvironment : public World {
+class VacuumEnvironment : public env::Environment {
 public:
     enum class LocationState {clean, dirty};
 

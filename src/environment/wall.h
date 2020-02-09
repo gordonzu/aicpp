@@ -4,7 +4,7 @@
 #define AICPP_WALL_H
 
 #include <ostream>
-#include "environment/world.h"
+//#include "environment/environment.h"
 #include "environment/environment_object.h"
 
 class Wall {

@@ -5,7 +5,7 @@
 #include "gtest/gtest.h"
 #include "environment/wall.h"
 #include "agent/agent.h"
-#include "environment/world.h"
+#include "environment/environment.h"
 #include "environment/xyenv/xy_environment.h"
 
 using namespace::testing;

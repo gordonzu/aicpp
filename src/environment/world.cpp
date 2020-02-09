@@ -16,18 +16,21 @@ ObjectVec& World::get_objects() {
 }
 
 void World::add_agent(EnvironmentObject eo) {
-    if (std::find(agents.begin(), agents.end(), eo) == agents.end()) agents.emplace_back(eo);
+    if (std::find(agents.begin(), agents.end(), eo) == 
+        agents.end()) agents.emplace_back(eo);
 }
 
 void World::add_environment_object(EnvironmentObject e) {
-    if (std::find(objects.begin(), objects.end(), e) == objects.end()) objects.emplace_back(e);
+    if (std::find(objects.begin(), objects.end(), e) == 
+        objects.end()) objects.emplace_back(e);
 }
 
 void World::add_view(EnvironmentView* v) {
-    if (std::find(views.begin(), views.end(), v) == views.end()) views.emplace_back(v);    
+    if (std::find(views.begin(), views.end(), v) == 
+        views.end()) views.emplace_back(v);    
 }
 
-Percept World::get_percept_seen(EnvironmentObject& eo) {
+/*Percept World::get_percept_seen(EnvironmentObject& eo) {
     return Percept{};
 }
 
@@ -47,6 +50,6 @@ void World::step(int x) {
     for (int i = 1; i <= x; ++i) {
         step();
     }
-}
+}*/
 
 

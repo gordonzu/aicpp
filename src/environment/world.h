@@ -7,7 +7,7 @@
 #include <memory>
 #include <iostream>
 #include "environment_object.h"
-//#include "environment_view.h"
+#include "environment_view.h"
 #include "agent/agent.h"
 class EnvironmentView;
 
@@ -22,10 +22,10 @@ public:
     ViewVec& get_views();
     ObjectVec& get_objects();
     ObjectVec& get_agents();
-    void step(int x);
+/*    void step(int x);
     void step();
     Percept get_percept_seen(EnvironmentObject& eo);
-
+*/
 protected:
     ViewVec views;
     ObjectVec objects;

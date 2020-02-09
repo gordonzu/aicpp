@@ -13,9 +13,9 @@ public:
 
     void notify(const std::string& msg) override {}
 
-    void agent_added(const Agent& a, World* w) override {} 
+    void agent_added(const Agent& a, Environment* w) override {} 
    
-    void agent_acted(const Agent& a, const Percept& p, Action& act, World* w) override {
+    void agent_acted(const Agent& a, const Percept& p, Action& act, Environment* w) override {
         if (actions.size() > size_t(0)) actions.append(", ");
         actions.append(act.str_rep()); 
     }
