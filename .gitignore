@@ -2,6 +2,7 @@
 
 build/
 cmake-build-debug/
+lib/
 .git/
 .idea/
 *.swp
