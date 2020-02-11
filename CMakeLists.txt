@@ -13,7 +13,7 @@ include_directories(
                     "${CMAKE_CURRENT_SOURCE_DIR}/src"
                    )
 link_directories   (
-                    "lib/googletest-release-1.8.0/googletest/build"
+                    "lib/googletest-release-1.8.0/googletest/build-lib"
                    )
 
 set(CMAKE_CXX_FLAGS "-std=c++17 -ggdb3 -Wall -Wno-unused-variable -O0 -fmax-errors=1")
@@ -32,15 +32,15 @@ set(
     src/agent/dynamic_object.cpp
     src/agent/action.cpp
 
-    test/vacuum_environment_test.cpp
-    test/reflex_vacuum_agent_test.cpp
-    test/percept_test.cpp
-	test/base_attribute_test.cpp
-    test/table_test.cpp
-    test/percept_sequence_test.cpp
+    #test/vacuum_environment_test.cpp
+    #test/reflex_vacuum_agent_test.cpp
+    #test/percept_test.cpp
+	#test/base_attribute_test.cpp
+    #test/table_test.cpp
+    #test/percept_sequence_test.cpp
     test/xy_environment_test.cpp
-    test/simple_rule_test.cpp
-    test/tabledriven_agent_program_test.cpp
+    #test/simple_rule_test.cpp
+    #test/tabledriven_agent_program_test.cpp
    )
 
 add_executable(aicpp ${sources})
