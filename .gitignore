@@ -1,12 +1,10 @@
-
-
+tests/lib/
 build/
-cmake-build-debug/
-lib/
+.cache/
 .git/
 .idea/
 *.swp
 *.o
 *.so
 *.user
-
+compile_commands.json

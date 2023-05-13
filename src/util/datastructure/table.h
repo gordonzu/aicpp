@@ -6,6 +6,7 @@
 
 #include <vector>
 #include <map>
+#include <optional>
 #include "util/types/attribute.h"
 
 using vector_t = std::vector<Attribute>;
