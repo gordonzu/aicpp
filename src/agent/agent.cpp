@@ -30,7 +30,6 @@ bool Agent::program_state() const {
 Action Agent::execute(const Percept& per) const {
     if (ap != nullptr) {
         Action tmp = ap->execute(per);
-        bool c = tmp.is_no_op();
         return tmp;
     }
     return Action{};

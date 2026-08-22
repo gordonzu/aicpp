@@ -58,8 +58,8 @@ public:
     }   
 
 private:
-	struct concept {
-    	virtual ~concept() {}
+	struct concept_t {
+    	virtual ~concept_t() {}
         virtual bool is_wall_() const = 0;
         virtual bool is_alive_() const = 0;
         virtual Action the_test_(Percept& p) const = 0;
@@ -67,7 +67,7 @@ private:
    	};
 
    	template<typename T> 
-	struct model : concept {
+	struct model : concept_t {
     	model(const T& t) : object(t) {}
        	virtual ~model() {}
 
@@ -90,7 +90,7 @@ private:
     private:
     	T object;
     };
-    shared_ptr<const concept> object;
+    shared_ptr<const concept_t> object;
 };
 
 #endif //AICPP_OBJECT_H

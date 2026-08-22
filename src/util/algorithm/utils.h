@@ -21,10 +21,10 @@ namespace ut {
 
         int i = 0;
         for (const auto& x: v1) {
-            if (print_string(v1[i]) != print_string(v2[i])) {
+            if (print_string(x) != print_string(v2[i])) {
                 return false;
-                ++i;
-            }         
+            }
+            ++i;
         }
         return true;
     }
