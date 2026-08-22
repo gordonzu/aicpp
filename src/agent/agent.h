@@ -4,6 +4,7 @@
 #define AICPP_AGENT_H
 
 #include <ostream>
+#include <cstdint>
 #include "environment/environment_object.h"
 #include "util/datastructure/xy_location.h"
 #include "action.h"

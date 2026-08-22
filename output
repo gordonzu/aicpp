@@ -1,0 +1,111 @@
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/gordonyx/.local/src/c++/aicpp/build
+[ 38%] Built target aicpp_lib
+[ 45%] Built target gtest
+[ 51%] Built target gmock
+[ 58%] Built target gmock_main
+[ 64%] Built target gtest_main
+[ 67%] Building CXX object tests/unit_tests/CMakeFiles/unit_tests_run.dir/vacuum_environment_test.cpp.o
+[ 70%] Linking CXX executable unit_tests_run
+[100%] Built target unit_tests_run
+[==========] Running 34 tests from 9 test suites.
+[----------] Global test environment set-up.
+[----------] 2 tests from BaseAttributeTest
+[ RUN      ] BaseAttributeTest.test_attributes
+[       OK ] BaseAttributeTest.test_attributes (38 ms)
+[ RUN      ] BaseAttributeTest.test_bools
+[       OK ] BaseAttributeTest.test_bools (4 ms)
+[----------] 2 tests from BaseAttributeTest (46 ms total)
+
+[----------] 1 test from PerceptSequenceTest
+[ RUN      ] PerceptSequenceTest.test_string
+[       OK ] PerceptSequenceTest.test_string (17 ms)
+[----------] 1 test from PerceptSequenceTest (17 ms total)
+
+[----------] 3 tests from Percept_test
+[ RUN      ] Percept_test.testString
+[       OK ] Percept_test.testString (6 ms)
+[ RUN      ] Percept_test.testEquals
+[       OK ] Percept_test.testEquals (4 ms)
+[ RUN      ] Percept_test.testCopyAndAssignment
+[       OK ] Percept_test.testCopyAndAssignment (5 ms)
+[----------] 3 tests from Percept_test (16 ms total)
+
+[----------] 1 test from ReflexVacuumAgentTest
+[ RUN      ] ReflexVacuumAgentTest.test_clean_clean
+[       OK ] ReflexVacuumAgentTest.test_clean_clean (14 ms)
+[----------] 1 test from ReflexVacuumAgentTest (14 ms total)
+
+[----------] 6 tests from SimpleRuleTest
+[ RUN      ] SimpleRuleTest.TestAction
+[       OK ] SimpleRuleTest.TestAction (43 ms)
+[ RUN      ] SimpleRuleTest.TestEqualRule
+[       OK ] SimpleRuleTest.TestEqualRule (3 ms)
+[ RUN      ] SimpleRuleTest.TestEvaluate
+[       OK ] SimpleRuleTest.TestEvaluate (7 ms)
+[ RUN      ] SimpleRuleTest.TestNotRule
+[       OK ] SimpleRuleTest.TestNotRule (10 ms)
+[ RUN      ] SimpleRuleTest.TestAndRule
+[       OK ] SimpleRuleTest.TestAndRule (18 ms)
+[ RUN      ] SimpleRuleTest.TestOrRule
+[       OK ] SimpleRuleTest.TestOrRule (19 ms)
+[----------] 6 tests from SimpleRuleTest (105 ms total)
+
+[----------] 2 tests from TableTest
+[ RUN      ] TableTest.test_set_value
+[       OK ] TableTest.test_set_value (12 ms)
+[ RUN      ] TableTest.test_get_value
+[       OK ] TableTest.test_get_value (16 ms)
+[----------] 2 tests from TableTest (28 ms total)
+
+[----------] 4 tests from TableDrivenAgentProgramTest
+[ RUN      ] TableDrivenAgentProgramTest.testNullPropram
+[       OK ] TableDrivenAgentProgramTest.testNullPropram (51 ms)
+[ RUN      ] TableDrivenAgentProgramTest.testLiveProgram
+[       OK ] TableDrivenAgentProgramTest.testLiveProgram (13 ms)
+[ RUN      ] TableDrivenAgentProgramTest.testExistingSequences
+[       OK ] TableDrivenAgentProgramTest.testExistingSequences (16 ms)
+[ RUN      ] TableDrivenAgentProgramTest.testNonExistingSequences
+[       OK ] TableDrivenAgentProgramTest.testNonExistingSequences (13 ms)
+[----------] 4 tests from TableDrivenAgentProgramTest (95 ms total)
+
+[----------] 2 tests from VacuumEnvironmentTest
+[ RUN      ] VacuumEnvironmentTest.testVEConstruction
+[       OK ] VacuumEnvironmentTest.testVEConstruction (10 ms)
+[ RUN      ] VacuumEnvironmentTest.testAddAgent
+[       OK ] VacuumEnvironmentTest.testAddAgent (4 ms)
+[----------] 2 tests from VacuumEnvironmentTest (15 ms total)
+
+[----------] 13 tests from XYEnvironmentTest
+[ RUN      ] XYEnvironmentTest.testMatrixConstruction
+[       OK ] XYEnvironmentTest.testMatrixConstruction (17 ms)
+[ RUN      ] XYEnvironmentTest.testObjectIsUnique
+[       OK ] XYEnvironmentTest.testObjectIsUnique (4 ms)
+[ RUN      ] XYEnvironmentTest.testGetCurrentLocation
+[       OK ] XYEnvironmentTest.testGetCurrentLocation (4 ms)
+[ RUN      ] XYEnvironmentTest.testAddObjects
+[       OK ] XYEnvironmentTest.testAddObjects (2 ms)
+[ RUN      ] XYEnvironmentTest.testAddObjectTwice
+[       OK ] XYEnvironmentTest.testAddObjectTwice (4 ms)
+[ RUN      ] XYEnvironmentTest.testMoveObjectToAbsoluteLocation
+[       OK ] XYEnvironmentTest.testMoveObjectToAbsoluteLocation (3 ms)
+[ RUN      ] XYEnvironmentTest.testMoveObject
+[       OK ] XYEnvironmentTest.testMoveObject (9 ms)
+[ RUN      ] XYEnvironmentTest.testIsBlocked
+[       OK ] XYEnvironmentTest.testIsBlocked (3 ms)
+[ RUN      ] XYEnvironmentTest.testMoveWithBlockingWalls
+[       OK ] XYEnvironmentTest.testMoveWithBlockingWalls (9 ms)
+[ RUN      ] XYEnvironmentTest.testGetSet
+[       OK ] XYEnvironmentTest.testGetSet (3 ms)
+[ RUN      ] XYEnvironmentTest.testGetObjectsNear
+[       OK ] XYEnvironmentTest.testGetObjectsNear (20 ms)
+[ RUN      ] XYEnvironmentTest.testOutOfRangeXYLocations
+[       OK ] XYEnvironmentTest.testOutOfRangeXYLocations (6 ms)
+[ RUN      ] XYEnvironmentTest.testMakePerimeter
+[       OK ] XYEnvironmentTest.testMakePerimeter (28 ms)
+[----------] 13 tests from XYEnvironmentTest (119 ms total)
+
+[----------] Global test environment tear-down
+[==========] 34 tests from 9 test suites ran. (490 ms total)
+[  PASSED  ] 34 tests.

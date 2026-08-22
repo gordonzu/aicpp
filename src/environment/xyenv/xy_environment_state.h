@@ -1,7 +1,7 @@
 // gordon zuehlke on 8/26/18.
 
 #ifndef AICPP_XYSTATE_H
-#define AICPPXYSTATE_H
+#define AICPP_XYSTATE_H
 
 #include <memory>
 #include <iostream>

@@ -4,6 +4,7 @@
 #define AICPP_WALL_H
 
 #include <ostream>
+#include <cstdint>
 //#include "environment/environment.h"
 #include "environment/environment_object.h"
 
