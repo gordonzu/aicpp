@@ -96,7 +96,7 @@ void XYEnvironment::make_perimeter(int x) {
 
     int i = 0;
     for (auto& y : walls) {
-        add_to(*walls[i], locs[i]);
+        add_to(*y, locs[i]);
         ++i;
     }
 }
