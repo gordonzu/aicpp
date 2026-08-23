@@ -43,7 +43,7 @@ public:
         add_agent(a);
     }
 
-    std::string& get_location_for(const Agent& a) {
+    const std::string& get_location_for(const Agent& a) {
         return get_agent_location(a); 
     }
 
@@ -86,7 +86,7 @@ private:
         agent_locations.emplace_back(std::make_pair(a, location));
     }
 
-    std::string& get_agent_location(const Agent& a) {
+    const std::string& get_agent_location(const Agent& a) {
         auto itv = std::find_if(
             agent_locations.begin(),
             agent_locations.end(),

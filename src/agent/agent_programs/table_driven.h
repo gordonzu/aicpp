@@ -11,7 +11,7 @@ public:
     ~TableDrivenAgentProgram() override=default;
     TableDrivenAgentProgram(MMap& m);
 
-    virtual Action execute(const Percept& p);
+    Action execute(const Percept& p) override;
     void set_table(MMap& m);
     bool set_value(PRow&, std::string&, Action);  
     Action get_value(PRow&, std::string&);

@@ -12,7 +12,7 @@
 using namespace ag;
 using std::make_shared;
 using std::shared_ptr;
-using std::move;
+//using std::move;
 
 template<typename T>
 std::string print_object(const T& x) {
@@ -26,7 +26,7 @@ std::string print_object(const T& x) {
 class EnvironmentObject {
 public:
     template<typename T> 
-    EnvironmentObject(const T& obj) : object{make_shared<model<T>>(move(obj))} {}
+    EnvironmentObject(const T& obj) : object{make_shared<model<T>>(std::move(obj))} {}
                                      
     bool is_wall() const {
         return object->is_wall_();
