@@ -22,7 +22,8 @@ public:
     VacuumEnvironment ve4{VacuumEnvironment::LocationState::clean,
                          VacuumEnvironment::LocationState::dirty};
 
-    const Agent& a;
+    //const Agent& a;
+    VacuumAgent a;
 };
 
 
