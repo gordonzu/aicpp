@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include "environment/environment.h"
+#include "../tests/unit_tests/object_graph_tracer.h"
+
 using namespace env;
 
 ViewVec& Environment::get_views() {
@@ -17,6 +19,14 @@ ObjectVec& Environment::get_objects() {
 }
 
 void Environment::add_agent(EnvironmentObject eo) {
+
+    //////////////////////////////////////////////////////////////////
+/*    auto& tracer = ObjectGraphTracer::instance();
+    tracer.add_node(this, "Environment");
+    tracer.add_node(&eo, "EnvironmentObject");
+    tracer.add_edge(this, &eo, "agent");*/
+    //////////////////////////////////////////////////////////////////
+
     if (std::find(agents.begin(), agents.end(), eo) == agents.end()) agents.emplace_back(eo);
 }
 
@@ -25,6 +35,14 @@ void Environment::add_environment_object(EnvironmentObject e) {
 }
 
 void Environment::add_view(EnvironmentView* v) {
+    
+    //////////////////////////////////////////////////////////////////////
+/*    auto& tracer = ObjectGraphTracer::instance();
+    tracer.add_node(this, "Environment");
+    tracer.add_node(v, "EnvironmentView");
+    tracer.add_edge(this, v, "view");*/
+    //////////////////////////////////////////////////////////////////////
+  
     if (std::find(views.begin(), views.end(), v) == views.end()) views.emplace_back(v);    
 }
 

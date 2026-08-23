@@ -4,6 +4,7 @@
 #define SIMPLE_ACTION_TRACKER_H
 
 #include "environment/environment_view.h"
+#include "action_log.h"
 
 class SimpleActionTracker : public EnvironmentView {
 public:
@@ -16,11 +17,13 @@ public:
     void agent_added(const Agent& a, Environment* w) override {} 
    
     void agent_acted(const Agent& a, const Percept& p, Action& act, Environment* w) override {
-        if (actions.size() > size_t(0)) actions.append(", ");
-        actions.append(act.str_rep()); 
+        //if (actions.size() > size_t(0)) actions.append(", ");
+        //actions.append(act.str_rep());
+        actions_.append(act.str_rep());
     }
     
-    std::string& get_actions() { return actions; }
+    //std::string& get_actions() { return actions; }
+    std::string get_actions() { return actions_.str(); }
     
     friend std::ostream& operator<<(std::ostream& out, const SimpleActionTracker& x) {
         out << "SimpleActionTracker: ";
@@ -36,7 +39,8 @@ public:
     }
 
 private:
-    std::string actions;
+    //std::string actions;
+    ActionLog actions_;
 };
 #endif
 

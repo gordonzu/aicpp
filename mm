@@ -11,4 +11,6 @@ ln -s compile_commands.json ../.
 #./tests/unit_tests/unit_tests_run
 #./tests/unit_tests/unit_tests_run --gtest_filter=*TestPercept*-*TestXYEnvironment*
 #valgrind --tool=memcheck --leak-check=yes ./tests/unit_tests/unit_tests_run
+#valgrind --tool=memcheck  --track-origins=yes  --leak-check=full --show-leak-kinds=all  ./tests/unit_tests/unit_tests_run --gtest_filter=ReflexVacuumAgentTest.test_clean_clean > graph.dot
+
 valgrind --tool=memcheck --track-origins=yes --leak-check=full --show-leak-kinds=all ./tests/unit_tests/unit_tests_run

@@ -1,12 +1,10 @@
 #pragma once
 
-#include <cxxabi.h>
 #include <atomic>
-#include <cstdlib>
+#include <cstddef>
 #include <iostream>
 #include <mutex>
 #include <string>
-#include <typeinfo>
 #include <unordered_map>
 #include <vector>
 
@@ -22,11 +20,10 @@ public:
         return t;
     }
 
-    template <typename T>
-    std::size_t add_node(const T* ptr, const std::string& label = "") {
+    std::size_t add_node(const void* ptr, const std::string& type_name, const std::string& label = "") {
         const std::size_t id = next_id_++;
         std::lock_guard<std::mutex> lock(mu_);
-        nodes_[id] = Node{demangle(typeid(T).name()), label};
+        nodes_[id] = Node{type_name, label};
         ptr_to_id_[reinterpret_cast<std::uintptr_t>(ptr)] = id;
         return id;
     }
@@ -68,14 +65,6 @@ private:
         std::size_t to;
         std::string label;
     };
-
-    static std::string demangle(const char* name) {
-        int status = 0;
-        char* realname = abi::__cxa_demangle(name, nullptr, nullptr, &status);
-        std::string out = (status == 0 && realname) ? realname : name;
-        std::free(realname);
-        return out;
-    }
 
     static std::string escape(const std::string& s) {
         std::string out;

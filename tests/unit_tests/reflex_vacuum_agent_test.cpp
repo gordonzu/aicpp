@@ -4,6 +4,7 @@
 #include "agent/simple_action_tracker.h"
 #include "environment/vacuum/reflex_vacuum_agent.h"
 #include "environment/vacuum/vacuum_environment.h"
+#include "object_graph_tracer.h"
 
 using namespace::testing;
 
@@ -32,6 +33,8 @@ TEST_F(ReflexVacuumAgentTest, test_clean_clean) {
     ve.step(8);
 
     ASSERT_TRUE(agent->program_state());
+
+    //ObjectGraphTracer::instance().dump_dot(std::cout);
 }
 
 
